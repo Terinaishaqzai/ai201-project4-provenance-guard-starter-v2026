@@ -27,7 +27,8 @@ Routes:
 import uuid
 
 from flask import Flask, jsonify, request
-
+import scoring
+import stylometry
 import audit
 import config
 import detector
@@ -218,6 +219,8 @@ def submit():
 
     # Get a score from the real detector
     model_score = detector.model_signal(text)
+    style_score = stylometry.style_signal(text)
+    combined_score = scoring.combine_signals(model_score, style_score)
 
     # Save the submission to the audit log
     audit.log_decision(
@@ -225,21 +228,24 @@ def submit():
         creator_id=creator_id,
         guess="unknown",
         model_score=model_score,
-        style_score=None,
-        combined_score=None,
-        label="Waiting for combined scoring.",
+        style_score=style_score,
+        combined_score=combined_score,
+        label="Waiting for final labeling.",
         status="decided"
     )
 
 
+    
     return jsonify({
         "content_id": content_id,
         "guess": "unknown",
-        "confidence": 0.5,
-        "label": "Waiting for combined scoring.",
+        "confidence": combined_score,
+        "label": "Waiting for final labeling.",
         "model_score": model_score,
-        "style_score": 0.0
+        "style_score": style_score,
+        "combined_score": combined_score
     }), 200
+
 
 
 

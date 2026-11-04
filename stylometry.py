@@ -64,8 +64,19 @@ def sentence_length_spread(text: str) -> float:
     `stdev` raises on fewer than two values. Decide what that should return
     before the attack set decides for you.
     """
-    # TODO: replace this
-    return 0.0
+    
+    lengths = [len(words(s)) for s in sentences(text)]
+
+    if len(lengths) < 2:
+        return 0.0
+
+    average = statistics.mean(lengths)
+
+    if average == 0:
+        return 0.0
+
+    return statistics.stdev(lengths) / average
+
 
 
 def type_token_ratio(text: str) -> float:
@@ -80,8 +91,17 @@ def type_token_ratio(text: str) -> float:
     directly comparable on it, and if your test inputs vary a lot in length,
     that alone can look like a signal.
     """
-    # TODO: replace this
-    return 0.0
+    
+    word_list = words(text)
+
+    if not word_list:
+        return 0.0
+
+    unique_words = len(set(word_list))
+    total_words = len(word_list)
+
+    return unique_words / total_words
+
 
 
 def punctuation_density(text: str) -> float:
@@ -94,8 +114,18 @@ def punctuation_density(text: str) -> float:
         more interesting than full stops, because they vary more between
         writers.
     """
-    # TODO: replace this
-    return 0.0
+    
+    word_count = len(words(text))
+
+    if word_count == 0:
+        return 0.0
+
+    punctuation_count = len(
+        re.findall(r"[,;:!?—–-]", text)
+    )
+
+    return punctuation_count / word_count
+
 
 
 # ── Combining them ───────────────────────────────────────────────────────────
@@ -122,8 +152,32 @@ def style_signal(text: str) -> float:
     you trust it. Plain and ordinary, not formal: formal prose reads as *human*
     to signal one, and it is plain writing that gets accused.
     """
-    # TODO: replace this
-    return 0.5
+    
+    if not words(text):
+        return 0.5
+
+    spread = sentence_length_spread(text)
+    vocabulary = type_token_ratio(text)
+    punctuation = punctuation_density(text)
+
+    # Convert all measurements to 0-1 AI-likelihood indicators
+    if len(sentences(text)) < 2:
+        spread_score = 0.5
+    else:
+        spread_score = 1.0 - min(spread / 0.8, 1.0)
+
+    vocabulary_score = 1.0 - vocabulary
+    punctuation_score = 1.0 - min(punctuation / 0.2, 1.0)
+
+    # Combine the three measures
+    score = (
+        0.5 * spread_score
+        + 0.3 * vocabulary_score
+        + 0.2 * punctuation_score
+    )
+
+    return round(max(0.0, min(score, 1.0)), 4)
+
 
 
 if __name__ == "__main__":
