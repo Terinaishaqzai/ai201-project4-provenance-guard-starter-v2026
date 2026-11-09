@@ -371,7 +371,7 @@ I also used ChatGPT to help structure and draft project documentation and a prop
 
 # Unit 8 — Testing and Improvement
 
-The following sections are reserved for Unit 8. The attack experiments, evaluation trials, and improvements have not been completed yet. Results will be recorded here after the actual tests are performed.
+The following sections record Unit 8 testing. Sections marked "Pending" have not been run yet.
 
 ---
 
