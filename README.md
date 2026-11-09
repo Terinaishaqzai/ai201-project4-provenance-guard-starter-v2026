@@ -377,29 +377,69 @@ The following sections are reserved for Unit 8. The attack experiments, evaluati
 
 ## Rate Limiting
 
-**Current configuration:**
+**Current configuration** (`config.py`):
 
 ```python
-RATE_LIMITING_ENABLED = False
+RATE_LIMITING_ENABLED = True
 RATE_LIMIT_PER_MINUTE = 10
 RATE_LIMIT_PER_DAY = 200
+RATE_LIMIT_STORAGE = "memory://"
 ```
 
-Rate limiting is currently disabled for Unit 7. These are the starter configuration values, not tested or finalized Unit 8 limits.
+The limit is applied to `/submit` in `app.py`:
+
+```python
+@limiter.limit(f"{config.RATE_LIMIT_PER_MINUTE}/minute;{config.RATE_LIMIT_PER_DAY}/day")
+```
 
 **Why those numbers and not others:**
 
-To be determined during Unit 8.
+A real writer submits their own work a few times an hour. Even someone quickly re-checking several drafts is unlikely to send 10 submissions in one minute, so 10/minute should never block a genuine user.
+
+A script trying to map my thresholds needs hundreds or thousands of slightly changed inputs. At 10/minute it gets at most one probe every 6 seconds, and the 200/day cap stops a single identity well before it could map the 0.35 and 0.65 boundaries.
+
+A lower limit, such as 3/minute, would risk blocking a writer who pastes several short pieces back to back. A limit of 15/minute or more would let the 15-request flood test pass without a single rejection.
 
 **What a caller counts as:**
 
-To be evaluated during Unit 8.
+Requests are counted per `creator_id` (`rate_limit_key` in `app.py`). If the body has no usable `creator_id`, the request counts against the caller's IP address instead.
+
+This has a known weakness: a script that invents a new `creator_id` for every request is never limited, because each request looks like a different caller. Storage is also in-memory, so restarting the service resets every count.
 
 **The run of status codes when I pushed past it:**
 
-Not tested yet.
+`python run_attacks.py --flood 15` (full output in `results/flood_2026-11-09_1559.md`):
 
----
+```text
+200 200 200 200 200 200 200 200 200 200 429 429 429 429 429
+```
+
+10 of 15 requests were accepted and 5 were rate limited, matching the 10/minute limit.
+
+**Rejections are logged.** Each 429 writes an audit entry:
+
+```json
+{
+  "creator_id": "flood_tester",
+  "event": "rejected",
+  "limit": "10 per 1 minute",
+  "reason": "rate_limited",
+  "status": "rejected",
+  "timestamp": "2026-11-09T20:59:08+00:00"
+}
+```
+
+Requests my own route refuses are also logged. A submission with no `text` returns a 400 and records:
+
+```json
+{
+  "creator_id": "me",
+  "event": "rejected",
+  "reason": "missing_text",
+  "status": "rejected",
+  "timestamp": "2026-11-09T21:00:19+00:00"
+}
+```
 
 ## Attack Run — Before
 

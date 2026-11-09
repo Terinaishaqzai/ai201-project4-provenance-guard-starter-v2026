@@ -152,7 +152,7 @@ def health():
 # ── YOU BUILD THIS ────────────────────────────────────────────────────────────
 
 @app.post("/submit")
-# @limiter.limit(f"{config.RATE_LIMIT_PER_MINUTE}/minute;{config.RATE_LIMIT_PER_DAY}/day")
+@limiter.limit(f"{config.RATE_LIMIT_PER_MINUTE}/minute;{config.RATE_LIMIT_PER_DAY}/day")
 def submit():
     """
     Take a piece of text, decide about it, log the decision, answer.
@@ -204,17 +204,20 @@ def submit():
     payload = request.get_json(silent=True)
 
     if not isinstance(payload, dict):
+        audit.log_rejection(creator_id="unknown", reason="invalid_json")
         return jsonify({"error": "Invalid JSON object"}), 400
 
     text = payload.get("text")
     creator_id = payload.get("creator_id")
+    log_creator = creator_id if isinstance(creator_id, str) and creator_id.strip() else "unknown"
 
     if not isinstance(text, str) or not text.strip():
+        audit.log_rejection(creator_id=log_creator, reason="missing_text")
         return jsonify({"error": "Text is required"}), 400
 
     if not isinstance(creator_id, str) or not creator_id.strip():
+        audit.log_rejection(creator_id="unknown", reason="missing_creator_id")
         return jsonify({"error": "Creator ID is required"}), 400
-
     content_id = str(uuid.uuid4())
 
     # Get a score from the real detector
