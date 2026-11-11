@@ -412,7 +412,7 @@ The limit is applied to `/submit` in `app.py`:
 
 A real writer submits their own work a few times an hour. Even someone quickly re-checking several drafts is unlikely to send 10 submissions in one minute, so 10/minute should never block a genuine user.
 
-A script trying to map my thresholds needs hundreds or thousands of slightly changed inputs. At 10/minute it gets at most one probe every 6 seconds, and the 200/day cap stops a single identity well before it could map the 0.35 and 0.65 boundaries.
+A script trying to map my thresholds needs hundreds or thousands of slightly changed inputs. At 10/minute it gets at most one probe every 6 seconds, and the 200/day cap stops a single identity well before it could map my label boundaries (0.35 and 0.70).
 
 A lower limit, such as 3/minute, would risk blocking a writer who pastes several short pieces back to back. A limit of 15/minute or more would let the 15-request flood test pass without a single rejection.
 
@@ -554,7 +554,7 @@ Criteria are in `criteria.md` (unchanged). Each was run three times with nothing
 
 **How each criterion was run:**
 
-- **Criteria 1, 2 and 4 of 5 invalid cases (criterion 5):** `python run_eval.py --label before`, using the scenarios in `scenarios.py`. Output: `results/run_2026-11-09_1642_before.md`.
+- **Criteria 1 and 2, plus 4 of the 5 invalid cases for criterion 5:** `python run_eval.py --label before`, using the scenarios in `scenarios.py`. Output: `results/run_2026-11-09_1642_before.md`.
   - Criterion 1 uses 10 pieces of my own writing: the paragraphs of my history essay *A World Connected: The Historical Process of Globalization from 1000 CE to Today*, with the three longest paragraphs split in two.
   - Criterion 2 compares those 10 against 10 AI-generated paragraphs (written by Claude for this test, unedited).
 - **Criteria 3, 4 and the 5th invalid case:** `python eval_extra.py --label before`, a helper I added because `scenarios.py` can only send texts or dict bodies. Output: `results/eval_extra_before_2026-11-09_1635.json`.
@@ -831,4 +831,4 @@ GitHub repository:
 
 https://github.com/Terinaishaqzai/ai201-project4-provenance-guard-starter-v2026
 
-This same repository will be used for Unit 8 so the project history and acceptance criteria remain available.
+This same repository was used for Units 7 and 8, so the commit history shows the acceptance criteria existed before the test results.
