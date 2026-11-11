@@ -181,14 +181,14 @@ The thresholds are defined in `config.py`:
 
 ```python
 HUMAN_THRESHOLD = 0.35
-AI_THRESHOLD = 0.65
+AI_THRESHOLD = 0.70   # was 0.65 in Unit 7; raised in Unit 8 (see The Improvement)
 ```
 
 | Label | Score range | Exact text a reader sees |
 |---|---|---|
 | High-confidence human | 0.00 ≤ score ≤ 0.35 | This writing shows patterns associated with human-written text. |
-| Unsure | 0.35 < score < 0.65 | We cannot confidently determine whether this text was written by a human or AI. |
-| High-confidence AI | 0.65 ≤ score ≤ 1.00 | This writing shows patterns associated with AI-generated text, but the result is not definitive. |
+| Unsure | 0.35 < score < 0.70 | We cannot confidently determine whether this text was written by a human or AI. |
+| High-confidence AI | 0.70 ≤ score ≤ 1.00 | This writing shows patterns associated with AI-generated text, but the result is not definitive. |
 
 **Why I worded the unsure one this way:**
 
@@ -363,6 +363,22 @@ I confirmed that the endpoint returned the combined score, confidence, guess, la
 
 I also verified that the `/appeal` endpoint recorded an appeal and updated the status to `under_review`.
 
+### Unit 8 — Testing with Claude
+
+**What I asked for:** step-by-step help finishing Unit 8: turning on the rate limiter, logging my own 400s, organizing the attack results, writing scenarios for my five criteria, and drafting the README write-up.
+
+**What came back:**
+- The `audit.log_rejection` calls for my three 400 cases in `/submit`.
+- `eval_extra.py`, a helper that tests criteria 3 and 4 and the list-body case of criterion 5, which `scenarios.py` can't express.
+- The 10 AI-generated paragraphs used as the AI half of criterion 2.
+- A marking rule for held/broke, and draft diagnoses written from my results and my `detector.py` and `stylometry.py` code.
+
+**What I changed or checked:**
+- I ran every command myself; every number in this README comes from my own machine and my `results/` files.
+- The human samples for criterion 1 are my own essay. When Claude first split it into 10 pieces, it added two sentences of its own to pad short halves. That was caught and removed before any run, so every human sample is only my writing.
+- When my after run returned 429 for criterion 5, I worked out it was my test order, not my route, and re-ran after a minute instead of changing the target.
+- I chose the improvement (raising `AI_THRESHOLD`) over input validation because the false positives hurt real writers, and I reported the cost in AI detection.
+
 ### Additional AI Assistance
 
 I also used ChatGPT to help structure and draft project documentation and a proposed set of acceptance criteria. The criteria draft was created after the initial implementation and should not be represented as having been written before testing.
@@ -371,7 +387,7 @@ I also used ChatGPT to help structure and draft project documentation and a prop
 
 # Unit 8 — Testing and Improvement
 
-The following sections record Unit 8 testing. Sections marked "Pending" have not been run yet.
+The following sections record Unit 8 testing: rate limiting, the attack set before and after one improvement, my five criteria at three trials each, and what is still broken.
 
 ---
 
@@ -688,31 +704,104 @@ Unedited AI text only averages 0.69, so an attack only has to lower one signal a
 
 ## The Improvement
 
-**What I changed:**
+**What I changed:** one line in `config.py`.
 
-Pending.
+```python
+AI_THRESHOLD = 0.65   # before
+AI_THRESHOLD = 0.70   # after
+```
 
-**Which diagnosis pointed at it:**
+Nothing else changed: same signals, same weights (0.5 / 0.5), same human threshold (0.35), same route.
 
-Pending.
+**Which diagnosis pointed at it:** Problem 1, false positives. Five real writers (FP02–FP06) were labeled AI with combined scores between 0.66 and 0.71, all just over the 0.65 line. The worst outcome of the whole run (FP03, a non-native English speaker) was one of them at 0.692. Because the two signals both reward regular writing, I can't fix them without changing a signal. What I can change in one line is how much evidence the system needs before it accuses someone. I chose 0.70 because it sits above four of the five false positives. I knew it would also sit just above the 0.69 that my own AI samples average, which is a cost I measure below.
+
+**How I measured it:** I re-ran the full attack set (`python run_attacks.py --set attack_set --label after`) and all five criteria at three trials each (`python run_eval.py --label after` and `python eval_extra.py --label after`). Both signals are deterministic, so every score is identical to the before run. Only labels that crossed the moved line can change.
 
 ### Attack Run — After
 
-Pending.
+Full output: `results/attack_run_2026-11-09_1649_after.md`. Same marking rule as the before run.
 
-**Did it help, and how do I know:**
+| ID | Targeting | Combined | Label before (0.65) | Label after (0.70) | Mark before | Mark after |
+|---|---|---|---|---|---|---|
+| EV01 | signal two: typos raise word variety | 0.377 | unsure | unsure | BROKE | BROKE |
+| EV02 | signal two: broken-up sentences | 0.402 | unsure | unsure | BROKE | BROKE |
+| EV03 | signal two: pasted quotation | 0.540 | unsure | unsure | BROKE | BROKE |
+| EV04 | signal one: unusual words | 0.591 | unsure | unsure | BROKE | BROKE |
+| EV05 | both: heavy human editing pass | 0.292 | human | human | BROKE | BROKE |
+| EV06 | signal two: one long + one short sentence | 0.408 | unsure | unsure | BROKE | BROKE |
+| EV07 | signal two: punctuation padding | 0.452 | unsure | unsure | BROKE | BROKE |
+| EV08 | signal one: below the token window | 0.384 | unsure | unsure | BROKE | BROKE |
+| EV09 | both: human opening bolted on | 0.552 | unsure | unsure | BROKE | BROKE |
+| EV10 | signal two: repeated stanza structure | 0.818 | ai | ai | HELD | HELD |
+| FP01 | plain, clear human writing | 0.550 | unsure | unsure | HELD | HELD |
+| FP02 | formal register | 0.681 | **ai** | unsure | BROKE | **HELD** |
+| FP03 | non-native English speaker | 0.692 | **ai** | unsure | BROKE | **HELD** |
+| FP04 | student essay written to a rubric | 0.673 | **ai** | unsure | BROKE | **HELD** |
+| FP05 | technical documentation | 0.712 | **ai** | **ai** | BROKE | BROKE |
+| FP06 | imitating a formal template | 0.661 | **ai** | unsure | BROKE | **HELD** |
+| FP07 | deliberate repetition | 0.627 | unsure | unsure | HELD | HELD |
+| FP08 | very short human text | 0.376 | unsure | unsure | HELD | HELD |
+| PI01 | instruction to ignore the check | 0.384 | unsure | unsure | HELD | HELD |
+| PI02 | instruction disguised as a system message | 0.233 | human | human | BROKE | BROKE |
+| PI03 | instruction in the writer's voice | 0.545 | unsure | unsure | HELD | HELD |
+| PI04 | make the label text hostile | 0.477 | unsure | unsure | HELD | HELD |
+| PI05 | inject into the audit log | 0.428 | unsure | unsure | HELD | HELD |
+| PI06 | instruction plus real human text | 0.525 | unsure | unsure | HELD | HELD |
+| MF01 | whitespace only | — | 400 | 400 | HELD | HELD |
+| MF02 | single character | — | 500 | 500 | BROKE | BROKE |
+| MF03 | control characters | 0.225 | human | human | BROKE | BROKE |
+| MF04 | punctuation only | 0.256 | human | human | BROKE | BROKE |
+| MF05 | very long single word | 0.724 | ai | ai | BROKE | BROKE |
+| MF06 | emoji only | 0.748 | ai | ai | BROKE | BROKE |
+| MF07 | right-to-left script | 0.703 | ai | ai | BROKE | BROKE |
+| MF08 | 60,000 characters | 0.849 | ai | ai | HELD | HELD |
+| RQ01–RQ12 | malformed request bodies | — | 400 ×12 | 400 ×12 | HELD ×12 | HELD ×12 |
+| FL01_01–10 | same creator, rapid | 0.239 | 200 | 200 | HELD ×10 | HELD ×10 |
+| FL01_11–12 | same creator, rapid | — | 429 | 429 | HELD ×2 | HELD ×2 |
 
-Pending. Will be decided by comparing the before and after results side by side.
+| Family | Broke before | Broke after |
+|---|---|---|
+| evasion | 9 | 9 |
+| false_positive | 5 | **1** |
+| prompt_injection | 1 | 1 |
+| malformed (MF + RQ) | 6 | 6 |
+| flood_same_creator | 0 | 0 |
+| **Total** | **21 of 56** | **17 of 56** |
+
+### Run Log — After
+
+| Criterion | Target | Run 1 | Run 2 | Run 3 | Verdict |
+|---|---|---|---|---|---|
+| 1. My own writing flagged as AI | ≤ 1 of 10 | 0/10 | 0/10 | 0/10 | MET |
+| 2. Score separation (AI avg − human avg) | ≥ 0.15 | 0.302 | 0.302 | 0.302 | MET |
+| 3. Label coverage | 3/3 spot checks + every score maps to one label | 3/3, 1001/1001 | 3/3, 1001/1001 | 3/3, 1001/1001 | MET |
+| 4. Appeal handling | 5/5 under_review + unknown id → 404 | 5/5, 404 | 5/5, 404 | 5/5, 404 | MET |
+| 5. Invalid inputs return 400 | 5 of 5 | 5/5 | 5/5 | 5/5 | MET |
+
+Outputs: `results/run_2026-11-09_1649_after.md` and `results/eval_extra_after_2026-11-09_1651.json`.
+
+**A note on criterion 5.** My first `eval_extra.py --label after` run (`results/eval_extra_after_2026-11-09_1649.json`) returned **429, not 400**, for the list-body case in all three trials. I had run the attack set, `run_eval.py` and `eval_extra.py` back to back. Requests with no usable `creator_id` are rate-limited by IP address, so the attack set's malformed rows plus my own invalid cases used up the 10/minute limit for my address before the list body arrived. I waited a minute and re-ran, and it returned 400 in all three trials. The route was never the problem, but it is a real finding about the limiter: every request without a creator_id from one address shares one bucket.
+
+**What the criteria don't show:** criterion 2 measures the score gap, and the scores didn't move. The labels did. Before the change, 9 of my 10 AI samples were labeled `ai`. After it, **only 3 of 10 were** (climate change, physical activity, financial literacy). The other 7 now read `unsure`.
+
+**Did it help?** Yes, for what I aimed it at, and at a cost I can name. False-positive breaks went from 5 to 1, and my worst outcome (FP03) is no longer accused. Total breaks went from 21 to 17, and no attack that held before broke after. All five criteria still pass. The cost is in detection: 7 of 10 plain AI paragraphs that were caught before now come back `unsure`, so a writer submitting unedited AI text now usually gets "we cannot confidently determine" instead of an AI label. The change moved my errors from accusing real writers to letting AI text through, which is the direction I said I'd choose. It did not make the detector better at telling the two apart; the 0.302 gap is unchanged.
 
 ---
 
 ## What's Still Broken
 
-Pending until the improvement has been measured.
+| Still broken | What I'd do | Why I stopped |
+|---|---|---|
+| **FP05**, technical documentation labeled AI (0.712) | Raising the threshold again would cost even more AI detection. The real fix is in signal two: stop treating even sentence length and low punctuation as AI evidence on their own, since technical writing has both by design. | One change per unit, and this one needs a signal redesign I'd want to test separately. |
+| **9 evasion attacks** (EV01–EV09) | Make the signals independent. Right now both reward regularity, so roughening AI text lowers both. I'd look for a signal that measures something else, like repetition of ideas across sentences, and give signal two less weight, since it is the cheapest to move on purpose. | Raising the threshold made this worse, not better, and the fix is a new signal, not a setting. |
+| **MF02 crash** (500, no audit entry) | Catch `ValueError` from `detector.model_signal` in `/submit`, return a 400 such as "text too short to score", and log it with `audit.log_rejection`. This is my next fix: it is small and fully safe. | It was my second choice for the one change. I picked the false positives because they hurt real people; the crash hurts no one's record. |
+| **MF03–MF07**, non-text input labeled confidently | Refuse to score text with too few real words: return 400 "can't score this text" instead of a label. Right-to-left and other non-Latin scripts (MF07) should get an honest "this system only scores English" rather than either label. | Needs care so it doesn't reject real writing; it belongs with the MF02 fix. |
+| **PI02**, injected line pushes text to `human` | The same fix as evasion. The injection works because odd tokens raise perplexity, not because anything obeys it. | Same as evasion. |
+| **Rate limiter**: per-`creator_id` keys | A script that invents a new creator_id per request is never limited, and every request without a creator_id from one address shares one bucket (which hit my own test). In production I'd key on an authenticated account and keep an IP limit as a backstop. | Out of scope for one change; it doesn't affect any label. |
 
 **The trade I'd make if this ran for real:**
 
-I would prioritize reducing false accusations against genuine writers, even if that meant some AI-generated submissions remained undetected. This would protect writers from unfair classifications, although the website would accept a higher risk of missing AI-generated content.
+I would keep the higher threshold and accept that more AI text gets through as `unsure`, because a wrong AI label lands on one real writer who has to defend their own work, while a missed AI submission costs the platform some accuracy. The people who pay for my choice are the honest writers competing against unflagged AI text, and the reviewers who now have more `unsure` cases to look at by hand.
 
 ---
 

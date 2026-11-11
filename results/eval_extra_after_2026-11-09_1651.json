@@ -1,0 +1,281 @@
+[
+  {
+    "trial": 1,
+    "criterion_3": {
+      "spot_checks": {
+        "0.2": "human",
+        "0.5": "unsure",
+        "0.9": "ai"
+      },
+      "spot_checks_passed": "3/3",
+      "sweep_scores_checked": 1001,
+      "sweep_failures": [],
+      "sweep_passed": true,
+      "pass": true
+    },
+    "criterion_4": {
+      "valid_appeals": [
+        {
+          "submit_status": 200,
+          "content_id": "464560b2-5540-4000-a13b-87f76aca1edc",
+          "appeal_status": 200,
+          "appeal_response": {
+            "content_id": "464560b2-5540-4000-a13b-87f76aca1edc",
+            "message": "Your appeal has been recorded.",
+            "status": "under_review"
+          },
+          "logged_under_review": true,
+          "pass": true
+        },
+        {
+          "submit_status": 200,
+          "content_id": "26af8ec7-f090-4a63-9ca8-7589f7db8fd6",
+          "appeal_status": 200,
+          "appeal_response": {
+            "content_id": "26af8ec7-f090-4a63-9ca8-7589f7db8fd6",
+            "message": "Your appeal has been recorded.",
+            "status": "under_review"
+          },
+          "logged_under_review": true,
+          "pass": true
+        },
+        {
+          "submit_status": 200,
+          "content_id": "a228d664-cb51-4dd3-a2f2-b79cd920cf15",
+          "appeal_status": 200,
+          "appeal_response": {
+            "content_id": "a228d664-cb51-4dd3-a2f2-b79cd920cf15",
+            "message": "Your appeal has been recorded.",
+            "status": "under_review"
+          },
+          "logged_under_review": true,
+          "pass": true
+        },
+        {
+          "submit_status": 200,
+          "content_id": "67a83bc4-f027-444c-915c-303f5e271145",
+          "appeal_status": 200,
+          "appeal_response": {
+            "content_id": "67a83bc4-f027-444c-915c-303f5e271145",
+            "message": "Your appeal has been recorded.",
+            "status": "under_review"
+          },
+          "logged_under_review": true,
+          "pass": true
+        },
+        {
+          "submit_status": 200,
+          "content_id": "257a1ce3-b61c-4ff7-bdc7-c670e9a10cb5",
+          "appeal_status": 200,
+          "appeal_response": {
+            "content_id": "257a1ce3-b61c-4ff7-bdc7-c670e9a10cb5",
+            "message": "Your appeal has been recorded.",
+            "status": "under_review"
+          },
+          "logged_under_review": true,
+          "pass": true
+        }
+      ],
+      "valid_appeals_passed": "5/5",
+      "unknown_id_status": 404,
+      "unknown_id_response": {
+        "error": "Content not found"
+      },
+      "pass": true
+    },
+    "criterion_5_non_object": {
+      "case": "JSON body is a list, not an object",
+      "status": 400,
+      "response": {
+        "error": "Invalid JSON object"
+      },
+      "pass": true
+    }
+  },
+  {
+    "trial": 2,
+    "criterion_3": {
+      "spot_checks": {
+        "0.2": "human",
+        "0.5": "unsure",
+        "0.9": "ai"
+      },
+      "spot_checks_passed": "3/3",
+      "sweep_scores_checked": 1001,
+      "sweep_failures": [],
+      "sweep_passed": true,
+      "pass": true
+    },
+    "criterion_4": {
+      "valid_appeals": [
+        {
+          "submit_status": 200,
+          "content_id": "e62c5173-50e5-4d30-9aef-d034cafee0af",
+          "appeal_status": 200,
+          "appeal_response": {
+            "content_id": "e62c5173-50e5-4d30-9aef-d034cafee0af",
+            "message": "Your appeal has been recorded.",
+            "status": "under_review"
+          },
+          "logged_under_review": true,
+          "pass": true
+        },
+        {
+          "submit_status": 200,
+          "content_id": "19840fdc-d63c-4e33-b35c-39fb8c712cdf",
+          "appeal_status": 200,
+          "appeal_response": {
+            "content_id": "19840fdc-d63c-4e33-b35c-39fb8c712cdf",
+            "message": "Your appeal has been recorded.",
+            "status": "under_review"
+          },
+          "logged_under_review": true,
+          "pass": true
+        },
+        {
+          "submit_status": 200,
+          "content_id": "6aefde11-46f2-4c61-a71e-a37e10e3247f",
+          "appeal_status": 200,
+          "appeal_response": {
+            "content_id": "6aefde11-46f2-4c61-a71e-a37e10e3247f",
+            "message": "Your appeal has been recorded.",
+            "status": "under_review"
+          },
+          "logged_under_review": true,
+          "pass": true
+        },
+        {
+          "submit_status": 200,
+          "content_id": "f7a3d398-9dda-4b7e-8331-9577f8e6fa2b",
+          "appeal_status": 200,
+          "appeal_response": {
+            "content_id": "f7a3d398-9dda-4b7e-8331-9577f8e6fa2b",
+            "message": "Your appeal has been recorded.",
+            "status": "under_review"
+          },
+          "logged_under_review": true,
+          "pass": true
+        },
+        {
+          "submit_status": 200,
+          "content_id": "a5ffcfb8-b799-4be5-8547-0691f475b532",
+          "appeal_status": 200,
+          "appeal_response": {
+            "content_id": "a5ffcfb8-b799-4be5-8547-0691f475b532",
+            "message": "Your appeal has been recorded.",
+            "status": "under_review"
+          },
+          "logged_under_review": true,
+          "pass": true
+        }
+      ],
+      "valid_appeals_passed": "5/5",
+      "unknown_id_status": 404,
+      "unknown_id_response": {
+        "error": "Content not found"
+      },
+      "pass": true
+    },
+    "criterion_5_non_object": {
+      "case": "JSON body is a list, not an object",
+      "status": 400,
+      "response": {
+        "error": "Invalid JSON object"
+      },
+      "pass": true
+    }
+  },
+  {
+    "trial": 3,
+    "criterion_3": {
+      "spot_checks": {
+        "0.2": "human",
+        "0.5": "unsure",
+        "0.9": "ai"
+      },
+      "spot_checks_passed": "3/3",
+      "sweep_scores_checked": 1001,
+      "sweep_failures": [],
+      "sweep_passed": true,
+      "pass": true
+    },
+    "criterion_4": {
+      "valid_appeals": [
+        {
+          "submit_status": 200,
+          "content_id": "92e76a50-2bfe-453a-8ac1-66c324b66c65",
+          "appeal_status": 200,
+          "appeal_response": {
+            "content_id": "92e76a50-2bfe-453a-8ac1-66c324b66c65",
+            "message": "Your appeal has been recorded.",
+            "status": "under_review"
+          },
+          "logged_under_review": true,
+          "pass": true
+        },
+        {
+          "submit_status": 200,
+          "content_id": "ea723004-c786-4031-886e-aed7618e009a",
+          "appeal_status": 200,
+          "appeal_response": {
+            "content_id": "ea723004-c786-4031-886e-aed7618e009a",
+            "message": "Your appeal has been recorded.",
+            "status": "under_review"
+          },
+          "logged_under_review": true,
+          "pass": true
+        },
+        {
+          "submit_status": 200,
+          "content_id": "ba8f45f1-ae9e-4dc5-ba90-5596dd78350c",
+          "appeal_status": 200,
+          "appeal_response": {
+            "content_id": "ba8f45f1-ae9e-4dc5-ba90-5596dd78350c",
+            "message": "Your appeal has been recorded.",
+            "status": "under_review"
+          },
+          "logged_under_review": true,
+          "pass": true
+        },
+        {
+          "submit_status": 200,
+          "content_id": "e68bdb94-cdee-46b6-a2b3-4832eaab5243",
+          "appeal_status": 200,
+          "appeal_response": {
+            "content_id": "e68bdb94-cdee-46b6-a2b3-4832eaab5243",
+            "message": "Your appeal has been recorded.",
+            "status": "under_review"
+          },
+          "logged_under_review": true,
+          "pass": true
+        },
+        {
+          "submit_status": 200,
+          "content_id": "26e32f55-d914-4d41-b7c5-77bfd8783523",
+          "appeal_status": 200,
+          "appeal_response": {
+            "content_id": "26e32f55-d914-4d41-b7c5-77bfd8783523",
+            "message": "Your appeal has been recorded.",
+            "status": "under_review"
+          },
+          "logged_under_review": true,
+          "pass": true
+        }
+      ],
+      "valid_appeals_passed": "5/5",
+      "unknown_id_status": 404,
+      "unknown_id_response": {
+        "error": "Content not found"
+      },
+      "pass": true
+    },
+    "criterion_5_non_object": {
+      "case": "JSON body is a list, not an object",
+      "status": 400,
+      "response": {
+        "error": "Invalid JSON object"
+      },
+      "pass": true
+    }
+  }
+]
