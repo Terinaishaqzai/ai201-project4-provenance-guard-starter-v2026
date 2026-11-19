@@ -843,9 +843,31 @@ This extends Provenance Guard (Project 4), my Flask service that scores text as 
 
 **The Shape**
 
-Shape B: harden against failure. Unit 8 left the scoring stage with no bad path. A one-character submission crashes `/submit` with a 500 and leaves no audit entry (MF02), and text with no real words (control characters, punctuation, emoji) gets a confident label (MF03–MF06). I'm adding one guard around the scoring stage in `/submit`. It refuses text with too few real words, and it catches `ValueError` and `DetectorUnavailable` from the signals. Each of these returns a JSON error (400 for unscorable text, 503 for a missing model) and writes a rejection to the audit log. I'm also adding `duration_ms` and input length to every log record, so failures can be timed and found.
+Shape B: harden against failure. Unit 8 left the scoring stage with no bad path. A one-character submission crashes `/submit` with a 500 and leaves no audit entry (MF02), and text with no real words (control characters, punctuation, emoji, non-Latin script) gets a confident label (MF03–MF07). I'm adding one guard around the scoring stage in `/submit`. It refuses text with fewer than 3 real words (400 `unscorable_text`), and it catches errors from the signals: a missing model or missing torch (503 `model_unavailable`), a too-short `ValueError` (400 `text_too_short`), and anything else (500 `scoring_error`, JSON, never an HTML page). Every one of these writes a rejection to the audit log. I'm also adding `duration_ms` and `text_chars` (input length) to every `/submit` log record, so failures can be timed and found.
 
 Out of scope:
 - I'm not changing either signal, the weights or the thresholds. FP05 and the evasion attacks stay broken.
-- I'm not adding a language check. MF07 (right-to-left script) stays as it is.
+- I'm not adding a language check. Non-Latin scripts like MF07 get the same generic "too few real words" refusal, not an "English only" message.
 - I'm not changing the rate limiter or its per-`creator_id` key.
+
+**Running It**
+
+Path B: local, with logs. Provenance Guard loads `torch` and the GPT-2 weights into memory, which is over the free host's 512 MB before a single request arrives, so it runs on my machine. The start command, the steps from a clean clone, Python 3.13, the pinned dependencies (`requirements-lock.txt`) and the ~550 MB model download are in [RUNNING.md](RUNNING.md) under **Capstone — Path B**.
+
+**Instrumentation**
+
+Every request to `/submit` writes one JSON line to `logs/audit.jsonl`, including requests that are refused or fail. A scored request writes a decision record; a refused or failed one writes a rejection record.
+
+| Field | In | What it holds |
+|---|---|---|
+| `timestamp` | both | UTC time the record was written |
+| `creator_id` | both | Who submitted (`unknown` if missing) |
+| `text_chars` | both | Length of the submitted text in characters (`null` if there was no text) |
+| `duration_ms` | both | Time spent in `/submit` for this request, in milliseconds |
+| `content_id`, `guess`, `model_score`, `style_score`, `combined_score`, `label` | decision | The result, both signal scores, and what the reader saw |
+| `status` | both | `decided`, or `rejected` |
+| `reason` | rejection | `unscorable_text`, `model_unavailable`, `text_too_short`, `scoring_error`, `missing_text`, `missing_creator_id`, `invalid_json`, or `rate_limited` |
+| `real_words` | rejection | How many real words the text had (`unscorable_text` only) |
+| `detail` | rejection | The error message from the signal that failed |
+
+Rate-limited (429) records are written by the limiter before `/submit` runs, so they have no `duration_ms` or `text_chars`.
