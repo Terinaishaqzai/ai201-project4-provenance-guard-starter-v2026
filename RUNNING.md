@@ -336,6 +336,26 @@ python detector.py                 # one-time: downloads GPT-2 (~550 MB)
 python app.py
 ```
 
+**Two things that broke the first time I followed this from a clean clone:**
+
+- **No Python 3.13 on the machine.** `python3.13` wasn't found, the venv got built on 3.14, and `test.py` failed its version check. If you use conda, make 3.13 that way, then build the venv from it:
+
+  ```bash
+  conda create -y -n py313 python=3.13
+  conda activate py313
+  python -m venv .venv
+  conda deactivate
+  source .venv/bin/activate
+  ```
+
+  Without conda: `brew install python@3.13`.
+
+- **Port 5000 is taken on a Mac.** macOS's AirPlay Receiver listens on 5000 and answers `403 Forbidden` with `Server: AirTunes`, so a `curl` looks like it reached the service when it didn't. Turn off **System Settings → General → AirDrop & Handoff → AirPlay Receiver**, or run on another port and export it in every terminal (the test scripts read it too):
+
+  ```bash
+  export PORT=5001
+  ```
+
 Check that it's up, from a second terminal:
 
 ```bash
