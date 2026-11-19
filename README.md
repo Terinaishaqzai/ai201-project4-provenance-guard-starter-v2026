@@ -868,10 +868,12 @@ Every request to `/submit` writes one JSON line to `logs/audit.jsonl`, including
 | `status` | both | `decided`, or `rejected` |
 | `reason` | rejection | `unscorable_text`, `model_unavailable`, `text_too_short`, `scoring_error`, `missing_text`, `missing_creator_id`, `invalid_json`, or `rate_limited` |
 | `real_words` | rejection | How many real words the text had (`unscorable_text` only) |
+| `common_words` | rejection | How many common English words the text had (`unscorable_text` only, added by the improvement) |
 | `detail` | rejection | The error message from the signal that failed |
 
 Rate-limited (429) records are written by the limiter before `/submit` runs, so they have no `duration_ms` or `text_chars`.
-Log extract (`logs/audit.jsonl`, written by `audit.log_decision` / `audit.log_rejection` from `app.py::submit`). Failures are included: six `model_unavailable` rejections from the two broken-server runs, and three scored records for the keyboard-mash input that criterion 1 caught.
+
+Log extract (`logs/audit.jsonl`, written by `audit.log_decision` / `audit.log_rejection` from `app.py::submit`). Failures are included: six `model_unavailable` rejections from the two broken-server runs, three scored records for the keyboard-mash input that criterion 1 caught, and three `unscorable_text` refusals from the after run.
 
 ```json
 {"timestamp": "2026-11-19T02:15:15+00:00", "creator_id": "cap_before_t1_c4model01_106b9e", "event": "rejected", "status": "rejected", "reason": "model_unavailable", "detail": "No module named 'torch' (blocked by run_without_torch.py)", "text_chars": 84, "duration_ms": 0.0}
@@ -883,7 +885,9 @@ Log extract (`logs/audit.jsonl`, written by `audit.log_decision` / `audit.log_re
 {"combined_score": 0.228, "content_id": "44b3ae64-03d7-479f-83e8-1915265f1f65", "creator_id": "cap_before_t1_inv08_0b9dcc", "duration_ms": 5338.0, "guess": "human", "label": "This writing shows patterns associated with human-written text.", "model_score": 0.006, "status": "decided", "style_score": 0.45, "text_chars": 11, "timestamp": "2026-11-19T03:06:15+00:00"}
 {"combined_score": 0.228, "content_id": "0ed6d60c-755b-409d-8632-c3571fafaa5c", "creator_id": "cap_before_t2_inv08_ffd4ed", "duration_ms": 29.5, "guess": "human", "label": "This writing shows patterns associated with human-written text.", "model_score": 0.006, "status": "decided", "style_score": 0.45, "text_chars": 11, "timestamp": "2026-11-19T03:06:15+00:00"}
 {"combined_score": 0.228, "content_id": "ad7cb578-ecb7-4735-ba06-3135d123f70c", "creator_id": "cap_before_t3_inv08_2bfeb7", "duration_ms": 27.5, "guess": "human", "label": "This writing shows patterns associated with human-written text.", "model_score": 0.006, "status": "decided", "style_score": 0.45, "text_chars": 11, "timestamp": "2026-11-19T03:06:16+00:00"}
-PASTE_AFTER_RUN_LINES_HERE
+{"timestamp": "2026-11-19T03:10:08+00:00", "creator_id": "cap_after_t1_inv01_dd2d88", "event": "rejected", "status": "rejected", "reason": "unscorable_text", "text_chars": 1, "real_words": 0, "common_words": 1, "duration_ms": 0.1}
+{"timestamp": "2026-11-19T03:10:08+00:00", "creator_id": "cap_after_t1_inv02_41cbfa", "event": "rejected", "status": "rejected", "reason": "unscorable_text", "text_chars": 1, "real_words": 0, "common_words": 0, "duration_ms": 0.0}
+{"timestamp": "2026-11-19T03:10:08+00:00", "creator_id": "cap_after_t1_inv03_76e7b2", "event": "rejected", "status": "rejected", "reason": "unscorable_text", "text_chars": 15, "real_words": 0, "common_words": 0, "duration_ms": 0.0}
 ```
 
 **What It Costs**
@@ -967,6 +971,6 @@ I met all five, so the honest question is which target was set too low.
 
 **How I Used AI**
 
-*Moment 1: finding why criterion 1 missed.* I pasted my before run into Claude and asked why criteria 1 and 2 were both 9/10. It pointed out from the server log that the same input (the 8th) got a 200 in every trial, and that this one input explains both misses. It guessed keyboard text with three short letter runs, and gave me a `grep` to confirm. The input was `qwe rty uio`. It then suggested the common-function-word check. I checked it against my criterion 3 sentences before committing, and I committed the fix on its own, before any after-results, so the order is visible.
+*Moment 1: finding why criterion 1 missed.* I pasted my before run into Claude and asked why criteria 1 and 2 were both 9/10. It pointed out from the server log that the same input (the 8th) got a 200 in every trial, and that this one input explains both misses. It guessed keyboard text with three short letter runs, and gave me a `grep` to confirm. The input was `qwe rty uio`. It then suggested the common-function-word check. Before I committed, it was tested against four of my criterion 3 sentences and a headline (the sentences passed and the headline was refused, which is the trade-off I report above). I committed the fix on its own, before any after-results, so the order is visible.
 
 *Moment 2: catching a test that only looked like it passed.* My first criterion 4 "model" run printed PASS three times. When I pasted the terminal, Claude noticed the broken server had failed to start with "Address already in use", so the test had hit the torch-missing server still running on port 5000, and both return the same 503. I confirmed it from the log's `detail` field, re-ran with the right server, and wrote the reason into the commit message. The same thing happened again on the after run (this time the healthy server was still up, so it failed with 200s). I fixed it the same way, and kept both bad result files in the repo instead of deleting them.
