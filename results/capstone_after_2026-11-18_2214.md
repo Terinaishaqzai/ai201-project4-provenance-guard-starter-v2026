@@ -1,0 +1,72 @@
+# Capstone run log: after
+
+Run 2026-11-18 22:14 with `python capstone_eval.py --label after`.
+
+| Criterion | Target | Run 1 | Run 2 | Run 3 | Verdict |
+|---|---|---|---|---|---|
+| 1. Invalid text refused with 400 + JSON error | 10 of 10 | 10/10 | 10/10 | 10/10 | MET |
+| 2. Every refused request in the audit log | 10 of 10 | 10/10 | 10/10 | 10/10 | MET |
+| 3. Short human writing accepted and scored | at least 9 of 10 | 10/10 | 10/10 | 10/10 | MET |
+| 4. Missing torch / missing GPT-2 return 503 | 2 of 2 | 2/2 | 2/2 | 2/2 | MET |
+| 5. duration_ms and text_chars in every record | 20 of 20 | 20/20 | 20/20 | 20/20 | MET |
+
+## Requests that failed a criterion
+
+None.
+
+## Real output, trial 1 (`capstone_eval.py::run_trial`)
+
+```json
+{"criterion": "1+2", "sent": "a", "status": 400, "response": {"error": "unscorable_text", "message": "This text doesn't look like real writing (needs at least 3 real words, including a common English word)."}}
+{"criterion": "1+2", "sent": "?", "status": 400, "response": {"error": "unscorable_text", "message": "This text doesn't look like real writing (needs at least 3 real words, including a common English word)."}}
+{"criterion": "1+2", "sent": "!!! ??? ... ,,,", "status": 400, "response": {"error": "unscorable_text", "message": "This text doesn't look like real writing (needs at least 3 real words, including a common English word)."}}
+{"criterion": "1+2", "sent": "-- ;; :: ** //", "status": 400, "response": {"error": "unscorable_text", "message": "This text doesn't look like real writing (needs at least 3 real words, including a common English word)."}}
+{"criterion": "1+2", "sent": "🙂🙃😀😃😄😁", "status": 400, "response": {"error": "unscorable_text", "message": "This text doesn't look like real writing (needs at least 3 real words, including a common English word)."}}
+{"criterion": "1+2", "sent": "🔥🔥🔥 💯💯 👍", "status": 400, "response": {"error": "unscorable_text", "message": "This text doesn't look like real writing (needs at least 3 real words, including a common English word)."}}
+{"criterion": "1+2", "sent": "asdfghjkl", "status": 400, "response": {"error": "unscorable_text", "message": "This text doesn't look like real writing (needs at least 3 real words, including a common English word)."}}
+{"criterion": "1+2", "sent": "qwe rty uio", "status": 400, "response": {"error": "unscorable_text", "message": "This text doesn't look like real writing (needs at least 3 real words, including a common English word)."}}
+{"criterion": "1+2", "sent": "#$%^&*()_+", "status": 400, "response": {"error": "unscorable_text", "message": "This text doesn't look like real writing (needs at least 3 real words, including a common English word)."}}
+{"criterion": "1+2", "sent": "zxcvbnm,./ asdf", "status": 400, "response": {"error": "unscorable_text", "message": "This text doesn't look like real writing (needs at least 3 real words, including a common English word)."}}
+{"criterion": "3", "sent": "By the seventeenth and eighteenth centuries, globalization expanded dramatically in both geographic scope and coercive character.", "status": 200, "response": {"combined_score": 0.40990000000000004, "confidence": 0.1802, "content_id": "2f2e4c7d-dd26-434b-a5ad-8963c3b6b4c1", "guess": "unsure", "label": "We cannot confidently determine whether this text was written by a human or AI.", "model_score": 0.4136, "style_score": 0.4062}}
+{"criterion": "3", "sent": "These commodities generated enormous profits and transformed European society; sugar reshaped diets, and coffeehouses became centers of commercial life.", "status": 200, "response": {"combined_score": 0.2274, "confidence": 0.5452, "content_id": "a66e181f-0ff5-4f14-927d-1f27c15d4134", "guess": "human", "label": "This writing shows patterns associated with human-written text.", "model_score": 0.0943, "style_score": 0.3605}}
+{"criterion": "3", "sent": "During the nineteenth century, industrialization gave Western nations unprecedented advantages that they used to reshape the global order through imperialism.", "status": 200, "response": {"combined_score": 0.43195, "confidence": 0.1361, "content_id": "0721027b-254f-4224-9bd7-e399e286c4af", "guess": "unsure", "label": "We cannot confidently determine whether this text was written by a human or AI.", "model_score": 0.4489, "style_score": 0.415}}
+{"criterion": "3", "sent": "This asymmetry would define global economic relationships well into the twentieth century.", "status": 200, "response": {"combined_score": 0.35975, "confidence": 0.2805, "content_id": "5b95ac90-b772-47fb-ba15-bf0e02f58a02", "guess": "unsure", "label": "We cannot confidently determine whether this text was written by a human or AI.", "model_score": 0.2695, "style_score": 0.45}}
+{"criterion": "3", "sent": "The two World Wars simultaneously devastated and deepened global interconnectedness.", "status": 200, "response": {"combined_score": 0.27985, "confidence": 0.4403, "content_id": "1848ff40-e575-4f29-864a-2e4c56bdbe01", "guess": "human", "label": "This writing shows patterns associated with human-written text.", "model_score": 0.1097, "style_score": 0.45}}
+{"criterion": "3", "sent": "After 1945, institutions like the United Nations and the World Bank were founded to manage global interdependence through multilateral cooperation.", "status": 200, "response": {"combined_score": 0.59495, "confidence": 0.1899, "content_id": "f5cdce96-7896-4363-9329-59bfe243cd91", "guess": "unsure", "label": "We cannot confidently determine whether this text was written by a human or AI.", "model_score": 0.7749, "style_score": 0.415}}
+{"criterion": "3", "sent": "The Cold War then extended integration through superpower competition.", "status": 200, "response": {"combined_score": 0.2286, "confidence": 0.5428, "content_id": "707dd1c5-6396-4e77-809f-1fd82216524b", "guess": "human", "label": "This writing shows patterns associated with human-written text.", "model_score": 0.0072, "style_score": 0.45}}
+{"criterion": "3", "sent": "Between 1950 and 2000, technology and transnational corporations became the twin engines of an accelerating globalization.", "status": 200, "response": {"combined_score": 0.3578, "confidence": 0.2844, "content_id": "7ef00007-abfd-4084-8e8d-5156bfa0968e", "guess": "unsure", "label": "We cannot confidently determine whether this text was written by a human or AI.", "model_score": 0.3094, "style_score": 0.4062}}
+{"criterion": "3", "sent": "The digital revolution had made the world smaller without making it more equal.", "status": 200, "response": {"combined_score": 0.43285, "confidence": 0.1343, "content_id": "cbe264c8-07f9-473e-868a-6abd8d4efb56", "guess": "unsure", "label": "We cannot confidently determine whether this text was written by a human or AI.", "model_score": 0.3926, "style_score": 0.4731}}
+{"criterion": "3", "sent": "Each era intensified the world's interconnectedness, and each era reproduced the inequality that has always accompanied it.", "status": 200, "response": {"combined_score": 0.36619999999999997, "confidence": 0.2676, "content_id": "12a1e24b-0c44-4a6a-a845-2bd538437589", "guess": "unsure", "label": "We cannot confidently determine whether this text was written by a human or AI.", "model_score": 0.2883, "style_score": 0.4441}}
+```
+
+## Audit log records for trial 1 (`logs/audit.jsonl`)
+
+```json
+{"common_words": 1, "creator_id": "cap_after_t1_inv01_2109d7", "duration_ms": 0.1, "event": "rejected", "real_words": 0, "reason": "unscorable_text", "status": "rejected", "text_chars": 1, "timestamp": "2026-11-19T03:14:18+00:00"}
+{"common_words": 0, "creator_id": "cap_after_t1_inv02_aab1c2", "duration_ms": 0.0, "event": "rejected", "real_words": 0, "reason": "unscorable_text", "status": "rejected", "text_chars": 1, "timestamp": "2026-11-19T03:14:18+00:00"}
+{"common_words": 0, "creator_id": "cap_after_t1_inv03_77e2d1", "duration_ms": 0.0, "event": "rejected", "real_words": 0, "reason": "unscorable_text", "status": "rejected", "text_chars": 15, "timestamp": "2026-11-19T03:14:18+00:00"}
+{"common_words": 0, "creator_id": "cap_after_t1_inv04_e6e363", "duration_ms": 0.0, "event": "rejected", "real_words": 0, "reason": "unscorable_text", "status": "rejected", "text_chars": 14, "timestamp": "2026-11-19T03:14:18+00:00"}
+{"common_words": 0, "creator_id": "cap_after_t1_inv05_c43b03", "duration_ms": 0.0, "event": "rejected", "real_words": 0, "reason": "unscorable_text", "status": "rejected", "text_chars": 6, "timestamp": "2026-11-19T03:14:18+00:00"}
+{"common_words": 0, "creator_id": "cap_after_t1_inv06_482d94", "duration_ms": 0.0, "event": "rejected", "real_words": 0, "reason": "unscorable_text", "status": "rejected", "text_chars": 8, "timestamp": "2026-11-19T03:14:18+00:00"}
+{"common_words": 0, "creator_id": "cap_after_t1_inv07_7dc6fb", "duration_ms": 0.0, "event": "rejected", "real_words": 1, "reason": "unscorable_text", "status": "rejected", "text_chars": 9, "timestamp": "2026-11-19T03:14:18+00:00"}
+{"common_words": 0, "creator_id": "cap_after_t1_inv08_f95593", "duration_ms": 0.0, "event": "rejected", "real_words": 3, "reason": "unscorable_text", "status": "rejected", "text_chars": 11, "timestamp": "2026-11-19T03:14:18+00:00"}
+{"common_words": 0, "creator_id": "cap_after_t1_inv09_5d2139", "duration_ms": 0.0, "event": "rejected", "real_words": 0, "reason": "unscorable_text", "status": "rejected", "text_chars": 10, "timestamp": "2026-11-19T03:14:18+00:00"}
+{"common_words": 0, "creator_id": "cap_after_t1_inv10_73bca4", "duration_ms": 0.0, "event": "rejected", "real_words": 2, "reason": "unscorable_text", "status": "rejected", "text_chars": 15, "timestamp": "2026-11-19T03:14:18+00:00"}
+{"combined_score": 0.40990000000000004, "content_id": "2f2e4c7d-dd26-434b-a5ad-8963c3b6b4c1", "creator_id": "cap_after_t1_hum01_7ae928", "duration_ms": 5853.2, "guess": "unsure", "label": "We cannot confidently determine whether this text was written by a human or AI.", "model_score": 0.4136, "status": "decided", "style_score": 0.4062, "text_chars": 129, "timestamp": "2026-11-19T03:14:24+00:00"}
+{"combined_score": 0.2274, "content_id": "a66e181f-0ff5-4f14-927d-1f27c15d4134", "creator_id": "cap_after_t1_hum02_9365a3", "duration_ms": 42.9, "guess": "human", "label": "This writing shows patterns associated with human-written text.", "model_score": 0.0943, "status": "decided", "style_score": 0.3605, "text_chars": 152, "timestamp": "2026-11-19T03:14:24+00:00"}
+{"combined_score": 0.43195, "content_id": "0721027b-254f-4224-9bd7-e399e286c4af", "creator_id": "cap_after_t1_hum03_33907c", "duration_ms": 43.1, "guess": "unsure", "label": "We cannot confidently determine whether this text was written by a human or AI.", "model_score": 0.4489, "status": "decided", "style_score": 0.415, "text_chars": 158, "timestamp": "2026-11-19T03:14:24+00:00"}
+{"combined_score": 0.35975, "content_id": "5b95ac90-b772-47fb-ba15-bf0e02f58a02", "creator_id": "cap_after_t1_hum04_9e1bf7", "duration_ms": 29.3, "guess": "unsure", "label": "We cannot confidently determine whether this text was written by a human or AI.", "model_score": 0.2695, "status": "decided", "style_score": 0.45, "text_chars": 90, "timestamp": "2026-11-19T03:14:24+00:00"}
+{"combined_score": 0.27985, "content_id": "1848ff40-e575-4f29-864a-2e4c56bdbe01", "creator_id": "cap_after_t1_hum05_e3f32a", "duration_ms": 29.1, "guess": "human", "label": "This writing shows patterns associated with human-written text.", "model_score": 0.1097, "status": "decided", "style_score": 0.45, "text_chars": 84, "timestamp": "2026-11-19T03:14:24+00:00"}
+{"combined_score": 0.59495, "content_id": "f5cdce96-7896-4363-9329-59bfe243cd91", "creator_id": "cap_after_t1_hum06_c8026a", "duration_ms": 42.6, "guess": "unsure", "label": "We cannot confidently determine whether this text was written by a human or AI.", "model_score": 0.7749, "status": "decided", "style_score": 0.415, "text_chars": 147, "timestamp": "2026-11-19T03:14:24+00:00"}
+{"combined_score": 0.2286, "content_id": "707dd1c5-6396-4e77-809f-1fd82216524b", "creator_id": "cap_after_t1_hum07_ca0afd", "duration_ms": 27.5, "guess": "human", "label": "This writing shows patterns associated with human-written text.", "model_score": 0.0072, "status": "decided", "style_score": 0.45, "text_chars": 70, "timestamp": "2026-11-19T03:14:24+00:00"}
+{"combined_score": 0.3578, "content_id": "7ef00007-abfd-4084-8e8d-5156bfa0968e", "creator_id": "cap_after_t1_hum08_df1d74", "duration_ms": 40.5, "guess": "unsure", "label": "We cannot confidently determine whether this text was written by a human or AI.", "model_score": 0.3094, "status": "decided", "style_score": 0.4062, "text_chars": 122, "timestamp": "2026-11-19T03:14:24+00:00"}
+{"combined_score": 0.43285, "content_id": "cbe264c8-07f9-473e-868a-6abd8d4efb56", "creator_id": "cap_after_t1_hum09_e81647", "duration_ms": 29.8, "guess": "unsure", "label": "We cannot confidently determine whether this text was written by a human or AI.", "model_score": 0.3926, "status": "decided", "style_score": 0.4731, "text_chars": 79, "timestamp": "2026-11-19T03:14:24+00:00"}
+{"combined_score": 0.36619999999999997, "content_id": "12a1e24b-0c44-4a6a-a845-2bd538437589", "creator_id": "cap_after_t1_hum10_625ea0", "duration_ms": 40.9, "guess": "unsure", "label": "We cannot confidently determine whether this text was written by a human or AI.", "model_score": 0.2883, "status": "decided", "style_score": 0.4441, "text_chars": 123, "timestamp": "2026-11-19T03:14:24+00:00"}
+```
+
+## Criterion 4 output (`capstone_eval.py::crit4`)
+
+```json
+{"scenario": "torch", "status": 503, "response": {"error": "model_unavailable", "message": "The detector model isn't loaded. Try again later."}, "log": [{"creator_id": "cap_after_t1_c4torch01_2eeec9", "detail": "No module named 'torch' (blocked by run_without_torch.py)", "duration_ms": 0.1, "event": "rejected", "reason": "model_unavailable", "status": "rejected", "text_chars": 84, "timestamp": "2026-11-19T03:13:15+00:00"}]}
+{"scenario": "model", "status": 503, "response": {"error": "model_unavailable", "message": "The detector model isn't loaded. Try again later."}, "log": [{"creator_id": "cap_after_t1_c4model01_def664", "detail": "Couldn't load 'no-such-model-capstone': no-such-model-capstone is not a local folder and is not a valid model identifier listed on 'https://huggingface.co/models'", "duration_ms": 2677.7, "event": "rejected", "reason": "model_unavailable", "status": "rejected", "text_chars": 84, "timestamp": "2026-11-19T03:13:40+00:00"}]}
+```

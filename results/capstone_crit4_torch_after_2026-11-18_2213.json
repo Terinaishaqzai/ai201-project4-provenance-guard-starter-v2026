@@ -1,0 +1,69 @@
+{
+  "scenario": "torch",
+  "label": "after",
+  "trials": [
+    {
+      "trial": 1,
+      "status": 503,
+      "response": {
+        "error": "model_unavailable",
+        "message": "The detector model isn't loaded. Try again later."
+      },
+      "log": [
+        {
+          "creator_id": "cap_after_t1_c4torch01_2eeec9",
+          "detail": "No module named 'torch' (blocked by run_without_torch.py)",
+          "duration_ms": 0.1,
+          "event": "rejected",
+          "reason": "model_unavailable",
+          "status": "rejected",
+          "text_chars": 84,
+          "timestamp": "2026-11-19T03:13:15+00:00"
+        }
+      ],
+      "pass": true
+    },
+    {
+      "trial": 2,
+      "status": 503,
+      "response": {
+        "error": "model_unavailable",
+        "message": "The detector model isn't loaded. Try again later."
+      },
+      "log": [
+        {
+          "creator_id": "cap_after_t2_c4torch01_dbf4c6",
+          "detail": "No module named 'torch' (blocked by run_without_torch.py)",
+          "duration_ms": 0.0,
+          "event": "rejected",
+          "reason": "model_unavailable",
+          "status": "rejected",
+          "text_chars": 84,
+          "timestamp": "2026-11-19T03:13:15+00:00"
+        }
+      ],
+      "pass": true
+    },
+    {
+      "trial": 3,
+      "status": 503,
+      "response": {
+        "error": "model_unavailable",
+        "message": "The detector model isn't loaded. Try again later."
+      },
+      "log": [
+        {
+          "creator_id": "cap_after_t3_c4torch01_f88c48",
+          "detail": "No module named 'torch' (blocked by run_without_torch.py)",
+          "duration_ms": 0.0,
+          "event": "rejected",
+          "reason": "model_unavailable",
+          "status": "rejected",
+          "text_chars": 84,
+          "timestamp": "2026-11-19T03:13:15+00:00"
+        }
+      ],
+      "pass": true
+    }
+  ]
+}

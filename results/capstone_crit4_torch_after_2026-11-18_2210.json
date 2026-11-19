@@ -1,0 +1,93 @@
+{
+  "scenario": "torch",
+  "label": "after",
+  "trials": [
+    {
+      "trial": 1,
+      "status": 200,
+      "response": {
+        "combined_score": 0.27985,
+        "confidence": 0.4403,
+        "content_id": "e049b92b-becc-48f6-a381-6b34d4df0cbe",
+        "guess": "human",
+        "label": "This writing shows patterns associated with human-written text.",
+        "model_score": 0.1097,
+        "style_score": 0.45
+      },
+      "log": [
+        {
+          "combined_score": 0.27985,
+          "content_id": "e049b92b-becc-48f6-a381-6b34d4df0cbe",
+          "creator_id": "cap_after_t1_c4torch01_594682",
+          "duration_ms": 34.2,
+          "guess": "human",
+          "label": "This writing shows patterns associated with human-written text.",
+          "model_score": 0.1097,
+          "status": "decided",
+          "style_score": 0.45,
+          "text_chars": 84,
+          "timestamp": "2026-11-19T03:10:40+00:00"
+        }
+      ],
+      "pass": false
+    },
+    {
+      "trial": 2,
+      "status": 200,
+      "response": {
+        "combined_score": 0.27985,
+        "confidence": 0.4403,
+        "content_id": "fdceb583-4bcb-4a28-aa96-fcfa63ebd432",
+        "guess": "human",
+        "label": "This writing shows patterns associated with human-written text.",
+        "model_score": 0.1097,
+        "style_score": 0.45
+      },
+      "log": [
+        {
+          "combined_score": 0.27985,
+          "content_id": "fdceb583-4bcb-4a28-aa96-fcfa63ebd432",
+          "creator_id": "cap_after_t2_c4torch01_0bce92",
+          "duration_ms": 32.3,
+          "guess": "human",
+          "label": "This writing shows patterns associated with human-written text.",
+          "model_score": 0.1097,
+          "status": "decided",
+          "style_score": 0.45,
+          "text_chars": 84,
+          "timestamp": "2026-11-19T03:10:40+00:00"
+        }
+      ],
+      "pass": false
+    },
+    {
+      "trial": 3,
+      "status": 200,
+      "response": {
+        "combined_score": 0.27985,
+        "confidence": 0.4403,
+        "content_id": "0e11968b-019c-4177-9382-4b16efed9fb8",
+        "guess": "human",
+        "label": "This writing shows patterns associated with human-written text.",
+        "model_score": 0.1097,
+        "style_score": 0.45
+      },
+      "log": [
+        {
+          "combined_score": 0.27985,
+          "content_id": "0e11968b-019c-4177-9382-4b16efed9fb8",
+          "creator_id": "cap_after_t3_c4torch01_30558a",
+          "duration_ms": 32.3,
+          "guess": "human",
+          "label": "This writing shows patterns associated with human-written text.",
+          "model_score": 0.1097,
+          "status": "decided",
+          "style_score": 0.45,
+          "text_chars": 84,
+          "timestamp": "2026-11-19T03:10:40+00:00"
+        }
+      ],
+      "pass": false
+    }
+  ]
+}
