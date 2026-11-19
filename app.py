@@ -24,6 +24,8 @@ Routes:
     GET  /health      is the service up, and is the model loaded
 """
 
+import re
+import time
 import uuid
 
 from flask import Flask, jsonify, request
@@ -33,6 +35,21 @@ import audit
 import config
 import detector
 app = Flask(__name__)
+
+
+# ── Capstone: failure handling on the scoring stage ───────────────────────────
+# Fewer real words than this and neither signal can score the text honestly.
+# A "real word" is 2+ Latin letters standing on its own, so punctuation, emoji,
+# control-character junk and one giant repeated "word" all count as zero.
+MIN_REAL_WORDS = 3
+
+
+def count_real_words(text):
+    return len(re.findall(r"\b[a-zA-Z]{2,}\b", text))
+
+
+def ms_since(start):
+    return round((time.perf_counter() - start) * 1000, 1)
 
 
 # ── Rate limiting — UNIT 8 ────────────────────────────────────────────────────
@@ -200,29 +217,75 @@ def submit():
     what should this do when `text` is missing, empty, or enormous? A crash on
     a malformed input is one of the most common real failures there is.
     """
-    
+    start = time.perf_counter()
+
     payload = request.get_json(silent=True)
 
     if not isinstance(payload, dict):
-        audit.log_rejection(creator_id="unknown", reason="invalid_json")
+        audit.log_rejection(creator_id="unknown", reason="invalid_json",
+                            text_chars=None, duration_ms=ms_since(start))
         return jsonify({"error": "Invalid JSON object"}), 400
 
     text = payload.get("text")
     creator_id = payload.get("creator_id")
     log_creator = creator_id if isinstance(creator_id, str) and creator_id.strip() else "unknown"
+    text_chars = len(text) if isinstance(text, str) else None
 
     if not isinstance(text, str) or not text.strip():
-        audit.log_rejection(creator_id=log_creator, reason="missing_text")
+        audit.log_rejection(creator_id=log_creator, reason="missing_text",
+                            text_chars=text_chars, duration_ms=ms_since(start))
         return jsonify({"error": "Text is required"}), 400
 
     if not isinstance(creator_id, str) or not creator_id.strip():
-        audit.log_rejection(creator_id="unknown", reason="missing_creator_id")
+        audit.log_rejection(creator_id="unknown", reason="missing_creator_id",
+                            text_chars=text_chars, duration_ms=ms_since(start))
         return jsonify({"error": "Creator ID is required"}), 400
+
+    # Capstone: refuse text the signals can't score honestly (MF02–MF06)
+    real_words = count_real_words(text)
+    if real_words < MIN_REAL_WORDS:
+        audit.log_rejection(creator_id=creator_id, reason="unscorable_text",
+                            text_chars=text_chars, real_words=real_words,
+                            duration_ms=ms_since(start))
+        return jsonify({
+            "error": "unscorable_text",
+            "message": f"This text has too few real words to score (needs at least {MIN_REAL_WORDS}).",
+        }), 400
+
     content_id = str(uuid.uuid4())
 
     # Get a score from the real detector
-    model_score = detector.model_signal(text)
-    style_score = stylometry.style_signal(text)
+    # Capstone: a signal that fails becomes a logged JSON error, not a 500
+    try:
+        model_score = detector.model_signal(text)
+        style_score = stylometry.style_signal(text)
+    except (detector.DetectorUnavailable, ImportError) as exc:
+        # ImportError too: perplexity() imports torch before it ever calls
+        # _load(), so a missing torch never becomes DetectorUnavailable
+        audit.log_rejection(creator_id=creator_id, reason="model_unavailable",
+                            detail=str(exc).splitlines()[0],
+                            text_chars=text_chars, duration_ms=ms_since(start))
+        return jsonify({
+            "error": "model_unavailable",
+            "message": "The detector model isn't loaded. Try again later.",
+        }), 503
+    except ValueError as exc:
+        audit.log_rejection(creator_id=creator_id, reason="text_too_short",
+                            detail=str(exc),
+                            text_chars=text_chars, duration_ms=ms_since(start))
+        return jsonify({
+            "error": "text_too_short",
+            "message": "This text is too short to score. Send a few sentences at least.",
+        }), 400
+    except Exception as exc:  # noqa: BLE001 — last resort: never an unlogged 500
+        audit.log_rejection(creator_id=creator_id, reason="scoring_error",
+                            detail=f"{type(exc).__name__}: {exc}",
+                            text_chars=text_chars, duration_ms=ms_since(start))
+        return jsonify({
+            "error": "scoring_error",
+            "message": "Something went wrong scoring this text.",
+        }), 500
+
     combined_score = scoring.combine_signals(model_score, style_score)
     
     guess, label = scoring.score_to_label(combined_score)
@@ -241,7 +304,9 @@ def submit():
         style_score=style_score,
         combined_score=combined_score,
         label=label,
-        status="decided"
+        status="decided",
+        text_chars=text_chars,
+        duration_ms=ms_since(start)
     )
 
 
