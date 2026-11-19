@@ -61,11 +61,14 @@ Users may accidentally submit incomplete or invalid information. The service sho
 These five criteria focus on reducing false accusations, measuring score differences, providing meaningful labels, handling appeals, and validating user input.
 
 The goal is not to create a perfect AI detector, but to build a system that is measurable, transparent, and fair to writers. Any targets the system fails to meet during future testing should be documented and investigated rather than silently changed.
+
 ---
 
 ## Capstone
 
 Written before any capstone results, for the Shape B extension (failure handling on the scoring stage of `/submit`).
+
+The exact test inputs for criteria 1, 3 and 4 (the 10 invalid texts, the 10 short sentences from my own essay, and the two broken-server setups) are fixed in `capstone_eval.py` and `run_without_torch.py`, committed with these criteria.
 
 ### 1. Refusing Invalid Text
 
