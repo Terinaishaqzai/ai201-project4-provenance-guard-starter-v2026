@@ -1,0 +1,1766 @@
+{
+  "label": "before",
+  "trials": [
+    {
+      "trial": 1,
+      "c1": 9,
+      "c2": 9,
+      "c3": 10,
+      "c5": 20,
+      "rows": [
+        {
+          "criterion": "1+2",
+          "creator_id": "cap_before_t1_inv01_e636e5",
+          "sent": "a",
+          "status": 400,
+          "response": {
+            "error": "unscorable_text",
+            "message": "This text has too few real words to score (needs at least 3)."
+          },
+          "c1_pass": true,
+          "c2_pass": true,
+          "log": [
+            {
+              "creator_id": "cap_before_t1_inv01_e636e5",
+              "duration_ms": 0.1,
+              "event": "rejected",
+              "real_words": 0,
+              "reason": "unscorable_text",
+              "status": "rejected",
+              "text_chars": 1,
+              "timestamp": "2026-11-19T03:06:10+00:00"
+            }
+          ],
+          "c5_pass": true
+        },
+        {
+          "criterion": "1+2",
+          "creator_id": "cap_before_t1_inv02_1311ef",
+          "sent": "?",
+          "status": 400,
+          "response": {
+            "error": "unscorable_text",
+            "message": "This text has too few real words to score (needs at least 3)."
+          },
+          "c1_pass": true,
+          "c2_pass": true,
+          "log": [
+            {
+              "creator_id": "cap_before_t1_inv02_1311ef",
+              "duration_ms": 0.0,
+              "event": "rejected",
+              "real_words": 0,
+              "reason": "unscorable_text",
+              "status": "rejected",
+              "text_chars": 1,
+              "timestamp": "2026-11-19T03:06:10+00:00"
+            }
+          ],
+          "c5_pass": true
+        },
+        {
+          "criterion": "1+2",
+          "creator_id": "cap_before_t1_inv03_6a0dd3",
+          "sent": "!!! ??? ... ,,,",
+          "status": 400,
+          "response": {
+            "error": "unscorable_text",
+            "message": "This text has too few real words to score (needs at least 3)."
+          },
+          "c1_pass": true,
+          "c2_pass": true,
+          "log": [
+            {
+              "creator_id": "cap_before_t1_inv03_6a0dd3",
+              "duration_ms": 0.0,
+              "event": "rejected",
+              "real_words": 0,
+              "reason": "unscorable_text",
+              "status": "rejected",
+              "text_chars": 15,
+              "timestamp": "2026-11-19T03:06:10+00:00"
+            }
+          ],
+          "c5_pass": true
+        },
+        {
+          "criterion": "1+2",
+          "creator_id": "cap_before_t1_inv04_0ccf74",
+          "sent": "-- ;; :: ** //",
+          "status": 400,
+          "response": {
+            "error": "unscorable_text",
+            "message": "This text has too few real words to score (needs at least 3)."
+          },
+          "c1_pass": true,
+          "c2_pass": true,
+          "log": [
+            {
+              "creator_id": "cap_before_t1_inv04_0ccf74",
+              "duration_ms": 0.0,
+              "event": "rejected",
+              "real_words": 0,
+              "reason": "unscorable_text",
+              "status": "rejected",
+              "text_chars": 14,
+              "timestamp": "2026-11-19T03:06:10+00:00"
+            }
+          ],
+          "c5_pass": true
+        },
+        {
+          "criterion": "1+2",
+          "creator_id": "cap_before_t1_inv05_478aba",
+          "sent": "🙂🙃😀😃😄😁",
+          "status": 400,
+          "response": {
+            "error": "unscorable_text",
+            "message": "This text has too few real words to score (needs at least 3)."
+          },
+          "c1_pass": true,
+          "c2_pass": true,
+          "log": [
+            {
+              "creator_id": "cap_before_t1_inv05_478aba",
+              "duration_ms": 0.0,
+              "event": "rejected",
+              "real_words": 0,
+              "reason": "unscorable_text",
+              "status": "rejected",
+              "text_chars": 6,
+              "timestamp": "2026-11-19T03:06:10+00:00"
+            }
+          ],
+          "c5_pass": true
+        },
+        {
+          "criterion": "1+2",
+          "creator_id": "cap_before_t1_inv06_b42777",
+          "sent": "🔥🔥🔥 💯💯 👍",
+          "status": 400,
+          "response": {
+            "error": "unscorable_text",
+            "message": "This text has too few real words to score (needs at least 3)."
+          },
+          "c1_pass": true,
+          "c2_pass": true,
+          "log": [
+            {
+              "creator_id": "cap_before_t1_inv06_b42777",
+              "duration_ms": 0.0,
+              "event": "rejected",
+              "real_words": 0,
+              "reason": "unscorable_text",
+              "status": "rejected",
+              "text_chars": 8,
+              "timestamp": "2026-11-19T03:06:10+00:00"
+            }
+          ],
+          "c5_pass": true
+        },
+        {
+          "criterion": "1+2",
+          "creator_id": "cap_before_t1_inv07_edcf2c",
+          "sent": "asdfghjkl",
+          "status": 400,
+          "response": {
+            "error": "unscorable_text",
+            "message": "This text has too few real words to score (needs at least 3)."
+          },
+          "c1_pass": true,
+          "c2_pass": true,
+          "log": [
+            {
+              "creator_id": "cap_before_t1_inv07_edcf2c",
+              "duration_ms": 0.0,
+              "event": "rejected",
+              "real_words": 1,
+              "reason": "unscorable_text",
+              "status": "rejected",
+              "text_chars": 9,
+              "timestamp": "2026-11-19T03:06:10+00:00"
+            }
+          ],
+          "c5_pass": true
+        },
+        {
+          "criterion": "1+2",
+          "creator_id": "cap_before_t1_inv08_0b9dcc",
+          "sent": "qwe rty uio",
+          "status": 200,
+          "response": {
+            "combined_score": 0.228,
+            "confidence": 0.544,
+            "content_id": "44b3ae64-03d7-479f-83e8-1915265f1f65",
+            "guess": "human",
+            "label": "This writing shows patterns associated with human-written text.",
+            "model_score": 0.006,
+            "style_score": 0.45
+          },
+          "c1_pass": false,
+          "c2_pass": false,
+          "log": [
+            {
+              "combined_score": 0.228,
+              "content_id": "44b3ae64-03d7-479f-83e8-1915265f1f65",
+              "creator_id": "cap_before_t1_inv08_0b9dcc",
+              "duration_ms": 5338.0,
+              "guess": "human",
+              "label": "This writing shows patterns associated with human-written text.",
+              "model_score": 0.006,
+              "status": "decided",
+              "style_score": 0.45,
+              "text_chars": 11,
+              "timestamp": "2026-11-19T03:06:15+00:00"
+            }
+          ],
+          "c5_pass": true
+        },
+        {
+          "criterion": "1+2",
+          "creator_id": "cap_before_t1_inv09_0edb30",
+          "sent": "#$%^&*()_+",
+          "status": 400,
+          "response": {
+            "error": "unscorable_text",
+            "message": "This text has too few real words to score (needs at least 3)."
+          },
+          "c1_pass": true,
+          "c2_pass": true,
+          "log": [
+            {
+              "creator_id": "cap_before_t1_inv09_0edb30",
+              "duration_ms": 0.0,
+              "event": "rejected",
+              "real_words": 0,
+              "reason": "unscorable_text",
+              "status": "rejected",
+              "text_chars": 10,
+              "timestamp": "2026-11-19T03:06:15+00:00"
+            }
+          ],
+          "c5_pass": true
+        },
+        {
+          "criterion": "1+2",
+          "creator_id": "cap_before_t1_inv10_5cbfbb",
+          "sent": "zxcvbnm,./ asdf",
+          "status": 400,
+          "response": {
+            "error": "unscorable_text",
+            "message": "This text has too few real words to score (needs at least 3)."
+          },
+          "c1_pass": true,
+          "c2_pass": true,
+          "log": [
+            {
+              "creator_id": "cap_before_t1_inv10_5cbfbb",
+              "duration_ms": 0.0,
+              "event": "rejected",
+              "real_words": 2,
+              "reason": "unscorable_text",
+              "status": "rejected",
+              "text_chars": 15,
+              "timestamp": "2026-11-19T03:06:15+00:00"
+            }
+          ],
+          "c5_pass": true
+        },
+        {
+          "criterion": "3",
+          "creator_id": "cap_before_t1_hum01_b2fd6b",
+          "sent": "By the seventeenth and eighteenth centuries, globalization expanded dramatically in both geographic scope and coercive character.",
+          "status": 200,
+          "response": {
+            "combined_score": 0.40990000000000004,
+            "confidence": 0.1802,
+            "content_id": "27dda837-3433-4e30-82ee-2d2e03c0299d",
+            "guess": "unsure",
+            "label": "We cannot confidently determine whether this text was written by a human or AI.",
+            "model_score": 0.4136,
+            "style_score": 0.4062
+          },
+          "c3_pass": true,
+          "log": [
+            {
+              "combined_score": 0.40990000000000004,
+              "content_id": "27dda837-3433-4e30-82ee-2d2e03c0299d",
+              "creator_id": "cap_before_t1_hum01_b2fd6b",
+              "duration_ms": 45.1,
+              "guess": "unsure",
+              "label": "We cannot confidently determine whether this text was written by a human or AI.",
+              "model_score": 0.4136,
+              "status": "decided",
+              "style_score": 0.4062,
+              "text_chars": 129,
+              "timestamp": "2026-11-19T03:06:15+00:00"
+            }
+          ],
+          "c5_pass": true
+        },
+        {
+          "criterion": "3",
+          "creator_id": "cap_before_t1_hum02_99533e",
+          "sent": "These commodities generated enormous profits and transformed European society; sugar reshaped diets, and coffeehouses became centers of commercial life.",
+          "status": 200,
+          "response": {
+            "combined_score": 0.2274,
+            "confidence": 0.5452,
+            "content_id": "ed7e00ae-dee1-4176-a67f-adc8e9aaaa50",
+            "guess": "human",
+            "label": "This writing shows patterns associated with human-written text.",
+            "model_score": 0.0943,
+            "style_score": 0.3605
+          },
+          "c3_pass": true,
+          "log": [
+            {
+              "combined_score": 0.2274,
+              "content_id": "ed7e00ae-dee1-4176-a67f-adc8e9aaaa50",
+              "creator_id": "cap_before_t1_hum02_99533e",
+              "duration_ms": 44.2,
+              "guess": "human",
+              "label": "This writing shows patterns associated with human-written text.",
+              "model_score": 0.0943,
+              "status": "decided",
+              "style_score": 0.3605,
+              "text_chars": 152,
+              "timestamp": "2026-11-19T03:06:15+00:00"
+            }
+          ],
+          "c5_pass": true
+        },
+        {
+          "criterion": "3",
+          "creator_id": "cap_before_t1_hum03_6bb893",
+          "sent": "During the nineteenth century, industrialization gave Western nations unprecedented advantages that they used to reshape the global order through imperialism.",
+          "status": 200,
+          "response": {
+            "combined_score": 0.43195,
+            "confidence": 0.1361,
+            "content_id": "7e8c0898-fa19-43a7-9a99-0f97118f72b6",
+            "guess": "unsure",
+            "label": "We cannot confidently determine whether this text was written by a human or AI.",
+            "model_score": 0.4489,
+            "style_score": 0.415
+          },
+          "c3_pass": true,
+          "log": [
+            {
+              "combined_score": 0.43195,
+              "content_id": "7e8c0898-fa19-43a7-9a99-0f97118f72b6",
+              "creator_id": "cap_before_t1_hum03_6bb893",
+              "duration_ms": 42.5,
+              "guess": "unsure",
+              "label": "We cannot confidently determine whether this text was written by a human or AI.",
+              "model_score": 0.4489,
+              "status": "decided",
+              "style_score": 0.415,
+              "text_chars": 158,
+              "timestamp": "2026-11-19T03:06:15+00:00"
+            }
+          ],
+          "c5_pass": true
+        },
+        {
+          "criterion": "3",
+          "creator_id": "cap_before_t1_hum04_24ec86",
+          "sent": "This asymmetry would define global economic relationships well into the twentieth century.",
+          "status": 200,
+          "response": {
+            "combined_score": 0.35975,
+            "confidence": 0.2805,
+            "content_id": "c742e681-79be-461d-9be7-72551b2c61bd",
+            "guess": "unsure",
+            "label": "We cannot confidently determine whether this text was written by a human or AI.",
+            "model_score": 0.2695,
+            "style_score": 0.45
+          },
+          "c3_pass": true,
+          "log": [
+            {
+              "combined_score": 0.35975,
+              "content_id": "c742e681-79be-461d-9be7-72551b2c61bd",
+              "creator_id": "cap_before_t1_hum04_24ec86",
+              "duration_ms": 30.3,
+              "guess": "unsure",
+              "label": "We cannot confidently determine whether this text was written by a human or AI.",
+              "model_score": 0.2695,
+              "status": "decided",
+              "style_score": 0.45,
+              "text_chars": 90,
+              "timestamp": "2026-11-19T03:06:15+00:00"
+            }
+          ],
+          "c5_pass": true
+        },
+        {
+          "criterion": "3",
+          "creator_id": "cap_before_t1_hum05_8ebb77",
+          "sent": "The two World Wars simultaneously devastated and deepened global interconnectedness.",
+          "status": 200,
+          "response": {
+            "combined_score": 0.27985,
+            "confidence": 0.4403,
+            "content_id": "2092c006-b427-4376-889e-af41594090a0",
+            "guess": "human",
+            "label": "This writing shows patterns associated with human-written text.",
+            "model_score": 0.1097,
+            "style_score": 0.45
+          },
+          "c3_pass": true,
+          "log": [
+            {
+              "combined_score": 0.27985,
+              "content_id": "2092c006-b427-4376-889e-af41594090a0",
+              "creator_id": "cap_before_t1_hum05_8ebb77",
+              "duration_ms": 30.3,
+              "guess": "human",
+              "label": "This writing shows patterns associated with human-written text.",
+              "model_score": 0.1097,
+              "status": "decided",
+              "style_score": 0.45,
+              "text_chars": 84,
+              "timestamp": "2026-11-19T03:06:15+00:00"
+            }
+          ],
+          "c5_pass": true
+        },
+        {
+          "criterion": "3",
+          "creator_id": "cap_before_t1_hum06_78ba35",
+          "sent": "After 1945, institutions like the United Nations and the World Bank were founded to manage global interdependence through multilateral cooperation.",
+          "status": 200,
+          "response": {
+            "combined_score": 0.59495,
+            "confidence": 0.1899,
+            "content_id": "29531cd3-2ef8-42fe-b28a-a94320f9623c",
+            "guess": "unsure",
+            "label": "We cannot confidently determine whether this text was written by a human or AI.",
+            "model_score": 0.7749,
+            "style_score": 0.415
+          },
+          "c3_pass": true,
+          "log": [
+            {
+              "combined_score": 0.59495,
+              "content_id": "29531cd3-2ef8-42fe-b28a-a94320f9623c",
+              "creator_id": "cap_before_t1_hum06_78ba35",
+              "duration_ms": 43.3,
+              "guess": "unsure",
+              "label": "We cannot confidently determine whether this text was written by a human or AI.",
+              "model_score": 0.7749,
+              "status": "decided",
+              "style_score": 0.415,
+              "text_chars": 147,
+              "timestamp": "2026-11-19T03:06:15+00:00"
+            }
+          ],
+          "c5_pass": true
+        },
+        {
+          "criterion": "3",
+          "creator_id": "cap_before_t1_hum07_6e1398",
+          "sent": "The Cold War then extended integration through superpower competition.",
+          "status": 200,
+          "response": {
+            "combined_score": 0.2286,
+            "confidence": 0.5428,
+            "content_id": "800aeee6-db20-4521-b368-1ceaa22f35b9",
+            "guess": "human",
+            "label": "This writing shows patterns associated with human-written text.",
+            "model_score": 0.0072,
+            "style_score": 0.45
+          },
+          "c3_pass": true,
+          "log": [
+            {
+              "combined_score": 0.2286,
+              "content_id": "800aeee6-db20-4521-b368-1ceaa22f35b9",
+              "creator_id": "cap_before_t1_hum07_6e1398",
+              "duration_ms": 28.6,
+              "guess": "human",
+              "label": "This writing shows patterns associated with human-written text.",
+              "model_score": 0.0072,
+              "status": "decided",
+              "style_score": 0.45,
+              "text_chars": 70,
+              "timestamp": "2026-11-19T03:06:15+00:00"
+            }
+          ],
+          "c5_pass": true
+        },
+        {
+          "criterion": "3",
+          "creator_id": "cap_before_t1_hum08_7892d3",
+          "sent": "Between 1950 and 2000, technology and transnational corporations became the twin engines of an accelerating globalization.",
+          "status": 200,
+          "response": {
+            "combined_score": 0.3578,
+            "confidence": 0.2844,
+            "content_id": "8718680e-7291-4b13-a53c-a694872e27d9",
+            "guess": "unsure",
+            "label": "We cannot confidently determine whether this text was written by a human or AI.",
+            "model_score": 0.3094,
+            "style_score": 0.4062
+          },
+          "c3_pass": true,
+          "log": [
+            {
+              "combined_score": 0.3578,
+              "content_id": "8718680e-7291-4b13-a53c-a694872e27d9",
+              "creator_id": "cap_before_t1_hum08_7892d3",
+              "duration_ms": 49.1,
+              "guess": "unsure",
+              "label": "We cannot confidently determine whether this text was written by a human or AI.",
+              "model_score": 0.3094,
+              "status": "decided",
+              "style_score": 0.4062,
+              "text_chars": 122,
+              "timestamp": "2026-11-19T03:06:15+00:00"
+            }
+          ],
+          "c5_pass": true
+        },
+        {
+          "criterion": "3",
+          "creator_id": "cap_before_t1_hum09_2b19f8",
+          "sent": "The digital revolution had made the world smaller without making it more equal.",
+          "status": 200,
+          "response": {
+            "combined_score": 0.43285,
+            "confidence": 0.1343,
+            "content_id": "35da83d1-e544-4ed6-8031-92c815326650",
+            "guess": "unsure",
+            "label": "We cannot confidently determine whether this text was written by a human or AI.",
+            "model_score": 0.3926,
+            "style_score": 0.4731
+          },
+          "c3_pass": true,
+          "log": [
+            {
+              "combined_score": 0.43285,
+              "content_id": "35da83d1-e544-4ed6-8031-92c815326650",
+              "creator_id": "cap_before_t1_hum09_2b19f8",
+              "duration_ms": 31.6,
+              "guess": "unsure",
+              "label": "We cannot confidently determine whether this text was written by a human or AI.",
+              "model_score": 0.3926,
+              "status": "decided",
+              "style_score": 0.4731,
+              "text_chars": 79,
+              "timestamp": "2026-11-19T03:06:15+00:00"
+            }
+          ],
+          "c5_pass": true
+        },
+        {
+          "criterion": "3",
+          "creator_id": "cap_before_t1_hum10_8b6f00",
+          "sent": "Each era intensified the world's interconnectedness, and each era reproduced the inequality that has always accompanied it.",
+          "status": 200,
+          "response": {
+            "combined_score": 0.36619999999999997,
+            "confidence": 0.2676,
+            "content_id": "056b5eee-1cda-4950-a6a3-0692caf17426",
+            "guess": "unsure",
+            "label": "We cannot confidently determine whether this text was written by a human or AI.",
+            "model_score": 0.2883,
+            "style_score": 0.4441
+          },
+          "c3_pass": true,
+          "log": [
+            {
+              "combined_score": 0.36619999999999997,
+              "content_id": "056b5eee-1cda-4950-a6a3-0692caf17426",
+              "creator_id": "cap_before_t1_hum10_8b6f00",
+              "duration_ms": 44.6,
+              "guess": "unsure",
+              "label": "We cannot confidently determine whether this text was written by a human or AI.",
+              "model_score": 0.2883,
+              "status": "decided",
+              "style_score": 0.4441,
+              "text_chars": 123,
+              "timestamp": "2026-11-19T03:06:15+00:00"
+            }
+          ],
+          "c5_pass": true
+        }
+      ]
+    },
+    {
+      "trial": 2,
+      "c1": 9,
+      "c2": 9,
+      "c3": 10,
+      "c5": 20,
+      "rows": [
+        {
+          "criterion": "1+2",
+          "creator_id": "cap_before_t2_inv01_097431",
+          "sent": "a",
+          "status": 400,
+          "response": {
+            "error": "unscorable_text",
+            "message": "This text has too few real words to score (needs at least 3)."
+          },
+          "c1_pass": true,
+          "c2_pass": true,
+          "log": [
+            {
+              "creator_id": "cap_before_t2_inv01_097431",
+              "duration_ms": 0.0,
+              "event": "rejected",
+              "real_words": 0,
+              "reason": "unscorable_text",
+              "status": "rejected",
+              "text_chars": 1,
+              "timestamp": "2026-11-19T03:06:15+00:00"
+            }
+          ],
+          "c5_pass": true
+        },
+        {
+          "criterion": "1+2",
+          "creator_id": "cap_before_t2_inv02_2a6c33",
+          "sent": "?",
+          "status": 400,
+          "response": {
+            "error": "unscorable_text",
+            "message": "This text has too few real words to score (needs at least 3)."
+          },
+          "c1_pass": true,
+          "c2_pass": true,
+          "log": [
+            {
+              "creator_id": "cap_before_t2_inv02_2a6c33",
+              "duration_ms": 0.0,
+              "event": "rejected",
+              "real_words": 0,
+              "reason": "unscorable_text",
+              "status": "rejected",
+              "text_chars": 1,
+              "timestamp": "2026-11-19T03:06:15+00:00"
+            }
+          ],
+          "c5_pass": true
+        },
+        {
+          "criterion": "1+2",
+          "creator_id": "cap_before_t2_inv03_7488ac",
+          "sent": "!!! ??? ... ,,,",
+          "status": 400,
+          "response": {
+            "error": "unscorable_text",
+            "message": "This text has too few real words to score (needs at least 3)."
+          },
+          "c1_pass": true,
+          "c2_pass": true,
+          "log": [
+            {
+              "creator_id": "cap_before_t2_inv03_7488ac",
+              "duration_ms": 0.0,
+              "event": "rejected",
+              "real_words": 0,
+              "reason": "unscorable_text",
+              "status": "rejected",
+              "text_chars": 15,
+              "timestamp": "2026-11-19T03:06:15+00:00"
+            }
+          ],
+          "c5_pass": true
+        },
+        {
+          "criterion": "1+2",
+          "creator_id": "cap_before_t2_inv04_6108aa",
+          "sent": "-- ;; :: ** //",
+          "status": 400,
+          "response": {
+            "error": "unscorable_text",
+            "message": "This text has too few real words to score (needs at least 3)."
+          },
+          "c1_pass": true,
+          "c2_pass": true,
+          "log": [
+            {
+              "creator_id": "cap_before_t2_inv04_6108aa",
+              "duration_ms": 0.0,
+              "event": "rejected",
+              "real_words": 0,
+              "reason": "unscorable_text",
+              "status": "rejected",
+              "text_chars": 14,
+              "timestamp": "2026-11-19T03:06:15+00:00"
+            }
+          ],
+          "c5_pass": true
+        },
+        {
+          "criterion": "1+2",
+          "creator_id": "cap_before_t2_inv05_e085e6",
+          "sent": "🙂🙃😀😃😄😁",
+          "status": 400,
+          "response": {
+            "error": "unscorable_text",
+            "message": "This text has too few real words to score (needs at least 3)."
+          },
+          "c1_pass": true,
+          "c2_pass": true,
+          "log": [
+            {
+              "creator_id": "cap_before_t2_inv05_e085e6",
+              "duration_ms": 0.0,
+              "event": "rejected",
+              "real_words": 0,
+              "reason": "unscorable_text",
+              "status": "rejected",
+              "text_chars": 6,
+              "timestamp": "2026-11-19T03:06:15+00:00"
+            }
+          ],
+          "c5_pass": true
+        },
+        {
+          "criterion": "1+2",
+          "creator_id": "cap_before_t2_inv06_27bab0",
+          "sent": "🔥🔥🔥 💯💯 👍",
+          "status": 400,
+          "response": {
+            "error": "unscorable_text",
+            "message": "This text has too few real words to score (needs at least 3)."
+          },
+          "c1_pass": true,
+          "c2_pass": true,
+          "log": [
+            {
+              "creator_id": "cap_before_t2_inv06_27bab0",
+              "duration_ms": 0.0,
+              "event": "rejected",
+              "real_words": 0,
+              "reason": "unscorable_text",
+              "status": "rejected",
+              "text_chars": 8,
+              "timestamp": "2026-11-19T03:06:15+00:00"
+            }
+          ],
+          "c5_pass": true
+        },
+        {
+          "criterion": "1+2",
+          "creator_id": "cap_before_t2_inv07_85fb22",
+          "sent": "asdfghjkl",
+          "status": 400,
+          "response": {
+            "error": "unscorable_text",
+            "message": "This text has too few real words to score (needs at least 3)."
+          },
+          "c1_pass": true,
+          "c2_pass": true,
+          "log": [
+            {
+              "creator_id": "cap_before_t2_inv07_85fb22",
+              "duration_ms": 0.0,
+              "event": "rejected",
+              "real_words": 1,
+              "reason": "unscorable_text",
+              "status": "rejected",
+              "text_chars": 9,
+              "timestamp": "2026-11-19T03:06:15+00:00"
+            }
+          ],
+          "c5_pass": true
+        },
+        {
+          "criterion": "1+2",
+          "creator_id": "cap_before_t2_inv08_ffd4ed",
+          "sent": "qwe rty uio",
+          "status": 200,
+          "response": {
+            "combined_score": 0.228,
+            "confidence": 0.544,
+            "content_id": "0ed6d60c-755b-409d-8632-c3571fafaa5c",
+            "guess": "human",
+            "label": "This writing shows patterns associated with human-written text.",
+            "model_score": 0.006,
+            "style_score": 0.45
+          },
+          "c1_pass": false,
+          "c2_pass": false,
+          "log": [
+            {
+              "combined_score": 0.228,
+              "content_id": "0ed6d60c-755b-409d-8632-c3571fafaa5c",
+              "creator_id": "cap_before_t2_inv08_ffd4ed",
+              "duration_ms": 29.5,
+              "guess": "human",
+              "label": "This writing shows patterns associated with human-written text.",
+              "model_score": 0.006,
+              "status": "decided",
+              "style_score": 0.45,
+              "text_chars": 11,
+              "timestamp": "2026-11-19T03:06:15+00:00"
+            }
+          ],
+          "c5_pass": true
+        },
+        {
+          "criterion": "1+2",
+          "creator_id": "cap_before_t2_inv09_2ead8e",
+          "sent": "#$%^&*()_+",
+          "status": 400,
+          "response": {
+            "error": "unscorable_text",
+            "message": "This text has too few real words to score (needs at least 3)."
+          },
+          "c1_pass": true,
+          "c2_pass": true,
+          "log": [
+            {
+              "creator_id": "cap_before_t2_inv09_2ead8e",
+              "duration_ms": 0.0,
+              "event": "rejected",
+              "real_words": 0,
+              "reason": "unscorable_text",
+              "status": "rejected",
+              "text_chars": 10,
+              "timestamp": "2026-11-19T03:06:15+00:00"
+            }
+          ],
+          "c5_pass": true
+        },
+        {
+          "criterion": "1+2",
+          "creator_id": "cap_before_t2_inv10_b0a658",
+          "sent": "zxcvbnm,./ asdf",
+          "status": 400,
+          "response": {
+            "error": "unscorable_text",
+            "message": "This text has too few real words to score (needs at least 3)."
+          },
+          "c1_pass": true,
+          "c2_pass": true,
+          "log": [
+            {
+              "creator_id": "cap_before_t2_inv10_b0a658",
+              "duration_ms": 0.0,
+              "event": "rejected",
+              "real_words": 2,
+              "reason": "unscorable_text",
+              "status": "rejected",
+              "text_chars": 15,
+              "timestamp": "2026-11-19T03:06:15+00:00"
+            }
+          ],
+          "c5_pass": true
+        },
+        {
+          "criterion": "3",
+          "creator_id": "cap_before_t2_hum01_012ade",
+          "sent": "By the seventeenth and eighteenth centuries, globalization expanded dramatically in both geographic scope and coercive character.",
+          "status": 200,
+          "response": {
+            "combined_score": 0.40990000000000004,
+            "confidence": 0.1802,
+            "content_id": "25eb279f-fd7f-4ef4-90e5-99d747756eec",
+            "guess": "unsure",
+            "label": "We cannot confidently determine whether this text was written by a human or AI.",
+            "model_score": 0.4136,
+            "style_score": 0.4062
+          },
+          "c3_pass": true,
+          "log": [
+            {
+              "combined_score": 0.40990000000000004,
+              "content_id": "25eb279f-fd7f-4ef4-90e5-99d747756eec",
+              "creator_id": "cap_before_t2_hum01_012ade",
+              "duration_ms": 42.5,
+              "guess": "unsure",
+              "label": "We cannot confidently determine whether this text was written by a human or AI.",
+              "model_score": 0.4136,
+              "status": "decided",
+              "style_score": 0.4062,
+              "text_chars": 129,
+              "timestamp": "2026-11-19T03:06:15+00:00"
+            }
+          ],
+          "c5_pass": true
+        },
+        {
+          "criterion": "3",
+          "creator_id": "cap_before_t2_hum02_4b8f01",
+          "sent": "These commodities generated enormous profits and transformed European society; sugar reshaped diets, and coffeehouses became centers of commercial life.",
+          "status": 200,
+          "response": {
+            "combined_score": 0.2274,
+            "confidence": 0.5452,
+            "content_id": "5741d59c-3a26-4b5d-9699-cb5c5d593967",
+            "guess": "human",
+            "label": "This writing shows patterns associated with human-written text.",
+            "model_score": 0.0943,
+            "style_score": 0.3605
+          },
+          "c3_pass": true,
+          "log": [
+            {
+              "combined_score": 0.2274,
+              "content_id": "5741d59c-3a26-4b5d-9699-cb5c5d593967",
+              "creator_id": "cap_before_t2_hum02_4b8f01",
+              "duration_ms": 42.3,
+              "guess": "human",
+              "label": "This writing shows patterns associated with human-written text.",
+              "model_score": 0.0943,
+              "status": "decided",
+              "style_score": 0.3605,
+              "text_chars": 152,
+              "timestamp": "2026-11-19T03:06:16+00:00"
+            }
+          ],
+          "c5_pass": true
+        },
+        {
+          "criterion": "3",
+          "creator_id": "cap_before_t2_hum03_062db0",
+          "sent": "During the nineteenth century, industrialization gave Western nations unprecedented advantages that they used to reshape the global order through imperialism.",
+          "status": 200,
+          "response": {
+            "combined_score": 0.43195,
+            "confidence": 0.1361,
+            "content_id": "4ffe5d34-de43-44f9-82a1-e5eb470881c5",
+            "guess": "unsure",
+            "label": "We cannot confidently determine whether this text was written by a human or AI.",
+            "model_score": 0.4489,
+            "style_score": 0.415
+          },
+          "c3_pass": true,
+          "log": [
+            {
+              "combined_score": 0.43195,
+              "content_id": "4ffe5d34-de43-44f9-82a1-e5eb470881c5",
+              "creator_id": "cap_before_t2_hum03_062db0",
+              "duration_ms": 46.4,
+              "guess": "unsure",
+              "label": "We cannot confidently determine whether this text was written by a human or AI.",
+              "model_score": 0.4489,
+              "status": "decided",
+              "style_score": 0.415,
+              "text_chars": 158,
+              "timestamp": "2026-11-19T03:06:16+00:00"
+            }
+          ],
+          "c5_pass": true
+        },
+        {
+          "criterion": "3",
+          "creator_id": "cap_before_t2_hum04_31571f",
+          "sent": "This asymmetry would define global economic relationships well into the twentieth century.",
+          "status": 200,
+          "response": {
+            "combined_score": 0.35975,
+            "confidence": 0.2805,
+            "content_id": "0c3db0f6-ee55-4866-b62f-5e91349452a2",
+            "guess": "unsure",
+            "label": "We cannot confidently determine whether this text was written by a human or AI.",
+            "model_score": 0.2695,
+            "style_score": 0.45
+          },
+          "c3_pass": true,
+          "log": [
+            {
+              "combined_score": 0.35975,
+              "content_id": "0c3db0f6-ee55-4866-b62f-5e91349452a2",
+              "creator_id": "cap_before_t2_hum04_31571f",
+              "duration_ms": 30.4,
+              "guess": "unsure",
+              "label": "We cannot confidently determine whether this text was written by a human or AI.",
+              "model_score": 0.2695,
+              "status": "decided",
+              "style_score": 0.45,
+              "text_chars": 90,
+              "timestamp": "2026-11-19T03:06:16+00:00"
+            }
+          ],
+          "c5_pass": true
+        },
+        {
+          "criterion": "3",
+          "creator_id": "cap_before_t2_hum05_1046d3",
+          "sent": "The two World Wars simultaneously devastated and deepened global interconnectedness.",
+          "status": 200,
+          "response": {
+            "combined_score": 0.27985,
+            "confidence": 0.4403,
+            "content_id": "feee0065-134a-42e2-a52c-d13df78d54b4",
+            "guess": "human",
+            "label": "This writing shows patterns associated with human-written text.",
+            "model_score": 0.1097,
+            "style_score": 0.45
+          },
+          "c3_pass": true,
+          "log": [
+            {
+              "combined_score": 0.27985,
+              "content_id": "feee0065-134a-42e2-a52c-d13df78d54b4",
+              "creator_id": "cap_before_t2_hum05_1046d3",
+              "duration_ms": 29.7,
+              "guess": "human",
+              "label": "This writing shows patterns associated with human-written text.",
+              "model_score": 0.1097,
+              "status": "decided",
+              "style_score": 0.45,
+              "text_chars": 84,
+              "timestamp": "2026-11-19T03:06:16+00:00"
+            }
+          ],
+          "c5_pass": true
+        },
+        {
+          "criterion": "3",
+          "creator_id": "cap_before_t2_hum06_0d0193",
+          "sent": "After 1945, institutions like the United Nations and the World Bank were founded to manage global interdependence through multilateral cooperation.",
+          "status": 200,
+          "response": {
+            "combined_score": 0.59495,
+            "confidence": 0.1899,
+            "content_id": "060dd291-db3a-40ff-be4a-687b6f0ce71f",
+            "guess": "unsure",
+            "label": "We cannot confidently determine whether this text was written by a human or AI.",
+            "model_score": 0.7749,
+            "style_score": 0.415
+          },
+          "c3_pass": true,
+          "log": [
+            {
+              "combined_score": 0.59495,
+              "content_id": "060dd291-db3a-40ff-be4a-687b6f0ce71f",
+              "creator_id": "cap_before_t2_hum06_0d0193",
+              "duration_ms": 43.6,
+              "guess": "unsure",
+              "label": "We cannot confidently determine whether this text was written by a human or AI.",
+              "model_score": 0.7749,
+              "status": "decided",
+              "style_score": 0.415,
+              "text_chars": 147,
+              "timestamp": "2026-11-19T03:06:16+00:00"
+            }
+          ],
+          "c5_pass": true
+        },
+        {
+          "criterion": "3",
+          "creator_id": "cap_before_t2_hum07_6001b1",
+          "sent": "The Cold War then extended integration through superpower competition.",
+          "status": 200,
+          "response": {
+            "combined_score": 0.2286,
+            "confidence": 0.5428,
+            "content_id": "8b402cc0-1dc3-41f5-8a80-890950e3c807",
+            "guess": "human",
+            "label": "This writing shows patterns associated with human-written text.",
+            "model_score": 0.0072,
+            "style_score": 0.45
+          },
+          "c3_pass": true,
+          "log": [
+            {
+              "combined_score": 0.2286,
+              "content_id": "8b402cc0-1dc3-41f5-8a80-890950e3c807",
+              "creator_id": "cap_before_t2_hum07_6001b1",
+              "duration_ms": 27.5,
+              "guess": "human",
+              "label": "This writing shows patterns associated with human-written text.",
+              "model_score": 0.0072,
+              "status": "decided",
+              "style_score": 0.45,
+              "text_chars": 70,
+              "timestamp": "2026-11-19T03:06:16+00:00"
+            }
+          ],
+          "c5_pass": true
+        },
+        {
+          "criterion": "3",
+          "creator_id": "cap_before_t2_hum08_94ae6e",
+          "sent": "Between 1950 and 2000, technology and transnational corporations became the twin engines of an accelerating globalization.",
+          "status": 200,
+          "response": {
+            "combined_score": 0.3578,
+            "confidence": 0.2844,
+            "content_id": "c990812d-b1d4-4e6f-b1e0-6df689b84846",
+            "guess": "unsure",
+            "label": "We cannot confidently determine whether this text was written by a human or AI.",
+            "model_score": 0.3094,
+            "style_score": 0.4062
+          },
+          "c3_pass": true,
+          "log": [
+            {
+              "combined_score": 0.3578,
+              "content_id": "c990812d-b1d4-4e6f-b1e0-6df689b84846",
+              "creator_id": "cap_before_t2_hum08_94ae6e",
+              "duration_ms": 42.6,
+              "guess": "unsure",
+              "label": "We cannot confidently determine whether this text was written by a human or AI.",
+              "model_score": 0.3094,
+              "status": "decided",
+              "style_score": 0.4062,
+              "text_chars": 122,
+              "timestamp": "2026-11-19T03:06:16+00:00"
+            }
+          ],
+          "c5_pass": true
+        },
+        {
+          "criterion": "3",
+          "creator_id": "cap_before_t2_hum09_9a4a74",
+          "sent": "The digital revolution had made the world smaller without making it more equal.",
+          "status": 200,
+          "response": {
+            "combined_score": 0.43285,
+            "confidence": 0.1343,
+            "content_id": "1f62d7e8-e6dc-424f-b6f3-00280de0a7fc",
+            "guess": "unsure",
+            "label": "We cannot confidently determine whether this text was written by a human or AI.",
+            "model_score": 0.3926,
+            "style_score": 0.4731
+          },
+          "c3_pass": true,
+          "log": [
+            {
+              "combined_score": 0.43285,
+              "content_id": "1f62d7e8-e6dc-424f-b6f3-00280de0a7fc",
+              "creator_id": "cap_before_t2_hum09_9a4a74",
+              "duration_ms": 30.3,
+              "guess": "unsure",
+              "label": "We cannot confidently determine whether this text was written by a human or AI.",
+              "model_score": 0.3926,
+              "status": "decided",
+              "style_score": 0.4731,
+              "text_chars": 79,
+              "timestamp": "2026-11-19T03:06:16+00:00"
+            }
+          ],
+          "c5_pass": true
+        },
+        {
+          "criterion": "3",
+          "creator_id": "cap_before_t2_hum10_841e8e",
+          "sent": "Each era intensified the world's interconnectedness, and each era reproduced the inequality that has always accompanied it.",
+          "status": 200,
+          "response": {
+            "combined_score": 0.36619999999999997,
+            "confidence": 0.2676,
+            "content_id": "50ad115e-0aca-43a3-b7bc-e7e4d203d7b8",
+            "guess": "unsure",
+            "label": "We cannot confidently determine whether this text was written by a human or AI.",
+            "model_score": 0.2883,
+            "style_score": 0.4441
+          },
+          "c3_pass": true,
+          "log": [
+            {
+              "combined_score": 0.36619999999999997,
+              "content_id": "50ad115e-0aca-43a3-b7bc-e7e4d203d7b8",
+              "creator_id": "cap_before_t2_hum10_841e8e",
+              "duration_ms": 42.5,
+              "guess": "unsure",
+              "label": "We cannot confidently determine whether this text was written by a human or AI.",
+              "model_score": 0.2883,
+              "status": "decided",
+              "style_score": 0.4441,
+              "text_chars": 123,
+              "timestamp": "2026-11-19T03:06:16+00:00"
+            }
+          ],
+          "c5_pass": true
+        }
+      ]
+    },
+    {
+      "trial": 3,
+      "c1": 9,
+      "c2": 9,
+      "c3": 10,
+      "c5": 20,
+      "rows": [
+        {
+          "criterion": "1+2",
+          "creator_id": "cap_before_t3_inv01_7dfc51",
+          "sent": "a",
+          "status": 400,
+          "response": {
+            "error": "unscorable_text",
+            "message": "This text has too few real words to score (needs at least 3)."
+          },
+          "c1_pass": true,
+          "c2_pass": true,
+          "log": [
+            {
+              "creator_id": "cap_before_t3_inv01_7dfc51",
+              "duration_ms": 0.0,
+              "event": "rejected",
+              "real_words": 0,
+              "reason": "unscorable_text",
+              "status": "rejected",
+              "text_chars": 1,
+              "timestamp": "2026-11-19T03:06:16+00:00"
+            }
+          ],
+          "c5_pass": true
+        },
+        {
+          "criterion": "1+2",
+          "creator_id": "cap_before_t3_inv02_07fba7",
+          "sent": "?",
+          "status": 400,
+          "response": {
+            "error": "unscorable_text",
+            "message": "This text has too few real words to score (needs at least 3)."
+          },
+          "c1_pass": true,
+          "c2_pass": true,
+          "log": [
+            {
+              "creator_id": "cap_before_t3_inv02_07fba7",
+              "duration_ms": 0.0,
+              "event": "rejected",
+              "real_words": 0,
+              "reason": "unscorable_text",
+              "status": "rejected",
+              "text_chars": 1,
+              "timestamp": "2026-11-19T03:06:16+00:00"
+            }
+          ],
+          "c5_pass": true
+        },
+        {
+          "criterion": "1+2",
+          "creator_id": "cap_before_t3_inv03_5bf628",
+          "sent": "!!! ??? ... ,,,",
+          "status": 400,
+          "response": {
+            "error": "unscorable_text",
+            "message": "This text has too few real words to score (needs at least 3)."
+          },
+          "c1_pass": true,
+          "c2_pass": true,
+          "log": [
+            {
+              "creator_id": "cap_before_t3_inv03_5bf628",
+              "duration_ms": 0.0,
+              "event": "rejected",
+              "real_words": 0,
+              "reason": "unscorable_text",
+              "status": "rejected",
+              "text_chars": 15,
+              "timestamp": "2026-11-19T03:06:16+00:00"
+            }
+          ],
+          "c5_pass": true
+        },
+        {
+          "criterion": "1+2",
+          "creator_id": "cap_before_t3_inv04_07e0b7",
+          "sent": "-- ;; :: ** //",
+          "status": 400,
+          "response": {
+            "error": "unscorable_text",
+            "message": "This text has too few real words to score (needs at least 3)."
+          },
+          "c1_pass": true,
+          "c2_pass": true,
+          "log": [
+            {
+              "creator_id": "cap_before_t3_inv04_07e0b7",
+              "duration_ms": 0.0,
+              "event": "rejected",
+              "real_words": 0,
+              "reason": "unscorable_text",
+              "status": "rejected",
+              "text_chars": 14,
+              "timestamp": "2026-11-19T03:06:16+00:00"
+            }
+          ],
+          "c5_pass": true
+        },
+        {
+          "criterion": "1+2",
+          "creator_id": "cap_before_t3_inv05_fa5ce2",
+          "sent": "🙂🙃😀😃😄😁",
+          "status": 400,
+          "response": {
+            "error": "unscorable_text",
+            "message": "This text has too few real words to score (needs at least 3)."
+          },
+          "c1_pass": true,
+          "c2_pass": true,
+          "log": [
+            {
+              "creator_id": "cap_before_t3_inv05_fa5ce2",
+              "duration_ms": 0.0,
+              "event": "rejected",
+              "real_words": 0,
+              "reason": "unscorable_text",
+              "status": "rejected",
+              "text_chars": 6,
+              "timestamp": "2026-11-19T03:06:16+00:00"
+            }
+          ],
+          "c5_pass": true
+        },
+        {
+          "criterion": "1+2",
+          "creator_id": "cap_before_t3_inv06_9cda41",
+          "sent": "🔥🔥🔥 💯💯 👍",
+          "status": 400,
+          "response": {
+            "error": "unscorable_text",
+            "message": "This text has too few real words to score (needs at least 3)."
+          },
+          "c1_pass": true,
+          "c2_pass": true,
+          "log": [
+            {
+              "creator_id": "cap_before_t3_inv06_9cda41",
+              "duration_ms": 0.0,
+              "event": "rejected",
+              "real_words": 0,
+              "reason": "unscorable_text",
+              "status": "rejected",
+              "text_chars": 8,
+              "timestamp": "2026-11-19T03:06:16+00:00"
+            }
+          ],
+          "c5_pass": true
+        },
+        {
+          "criterion": "1+2",
+          "creator_id": "cap_before_t3_inv07_bf0166",
+          "sent": "asdfghjkl",
+          "status": 400,
+          "response": {
+            "error": "unscorable_text",
+            "message": "This text has too few real words to score (needs at least 3)."
+          },
+          "c1_pass": true,
+          "c2_pass": true,
+          "log": [
+            {
+              "creator_id": "cap_before_t3_inv07_bf0166",
+              "duration_ms": 0.0,
+              "event": "rejected",
+              "real_words": 1,
+              "reason": "unscorable_text",
+              "status": "rejected",
+              "text_chars": 9,
+              "timestamp": "2026-11-19T03:06:16+00:00"
+            }
+          ],
+          "c5_pass": true
+        },
+        {
+          "criterion": "1+2",
+          "creator_id": "cap_before_t3_inv08_2bfeb7",
+          "sent": "qwe rty uio",
+          "status": 200,
+          "response": {
+            "combined_score": 0.228,
+            "confidence": 0.544,
+            "content_id": "ad7cb578-ecb7-4735-ba06-3135d123f70c",
+            "guess": "human",
+            "label": "This writing shows patterns associated with human-written text.",
+            "model_score": 0.006,
+            "style_score": 0.45
+          },
+          "c1_pass": false,
+          "c2_pass": false,
+          "log": [
+            {
+              "combined_score": 0.228,
+              "content_id": "ad7cb578-ecb7-4735-ba06-3135d123f70c",
+              "creator_id": "cap_before_t3_inv08_2bfeb7",
+              "duration_ms": 27.5,
+              "guess": "human",
+              "label": "This writing shows patterns associated with human-written text.",
+              "model_score": 0.006,
+              "status": "decided",
+              "style_score": 0.45,
+              "text_chars": 11,
+              "timestamp": "2026-11-19T03:06:16+00:00"
+            }
+          ],
+          "c5_pass": true
+        },
+        {
+          "criterion": "1+2",
+          "creator_id": "cap_before_t3_inv09_40ccdf",
+          "sent": "#$%^&*()_+",
+          "status": 400,
+          "response": {
+            "error": "unscorable_text",
+            "message": "This text has too few real words to score (needs at least 3)."
+          },
+          "c1_pass": true,
+          "c2_pass": true,
+          "log": [
+            {
+              "creator_id": "cap_before_t3_inv09_40ccdf",
+              "duration_ms": 0.0,
+              "event": "rejected",
+              "real_words": 0,
+              "reason": "unscorable_text",
+              "status": "rejected",
+              "text_chars": 10,
+              "timestamp": "2026-11-19T03:06:16+00:00"
+            }
+          ],
+          "c5_pass": true
+        },
+        {
+          "criterion": "1+2",
+          "creator_id": "cap_before_t3_inv10_2671e9",
+          "sent": "zxcvbnm,./ asdf",
+          "status": 400,
+          "response": {
+            "error": "unscorable_text",
+            "message": "This text has too few real words to score (needs at least 3)."
+          },
+          "c1_pass": true,
+          "c2_pass": true,
+          "log": [
+            {
+              "creator_id": "cap_before_t3_inv10_2671e9",
+              "duration_ms": 0.0,
+              "event": "rejected",
+              "real_words": 2,
+              "reason": "unscorable_text",
+              "status": "rejected",
+              "text_chars": 15,
+              "timestamp": "2026-11-19T03:06:16+00:00"
+            }
+          ],
+          "c5_pass": true
+        },
+        {
+          "criterion": "3",
+          "creator_id": "cap_before_t3_hum01_8ee9bb",
+          "sent": "By the seventeenth and eighteenth centuries, globalization expanded dramatically in both geographic scope and coercive character.",
+          "status": 200,
+          "response": {
+            "combined_score": 0.40990000000000004,
+            "confidence": 0.1802,
+            "content_id": "925d8b18-f5d6-438b-9dd5-3a1675152064",
+            "guess": "unsure",
+            "label": "We cannot confidently determine whether this text was written by a human or AI.",
+            "model_score": 0.4136,
+            "style_score": 0.4062
+          },
+          "c3_pass": true,
+          "log": [
+            {
+              "combined_score": 0.40990000000000004,
+              "content_id": "925d8b18-f5d6-438b-9dd5-3a1675152064",
+              "creator_id": "cap_before_t3_hum01_8ee9bb",
+              "duration_ms": 42.1,
+              "guess": "unsure",
+              "label": "We cannot confidently determine whether this text was written by a human or AI.",
+              "model_score": 0.4136,
+              "status": "decided",
+              "style_score": 0.4062,
+              "text_chars": 129,
+              "timestamp": "2026-11-19T03:06:16+00:00"
+            }
+          ],
+          "c5_pass": true
+        },
+        {
+          "criterion": "3",
+          "creator_id": "cap_before_t3_hum02_78c4b0",
+          "sent": "These commodities generated enormous profits and transformed European society; sugar reshaped diets, and coffeehouses became centers of commercial life.",
+          "status": 200,
+          "response": {
+            "combined_score": 0.2274,
+            "confidence": 0.5452,
+            "content_id": "94606736-e694-4129-be26-30eb8c0a0101",
+            "guess": "human",
+            "label": "This writing shows patterns associated with human-written text.",
+            "model_score": 0.0943,
+            "style_score": 0.3605
+          },
+          "c3_pass": true,
+          "log": [
+            {
+              "combined_score": 0.2274,
+              "content_id": "94606736-e694-4129-be26-30eb8c0a0101",
+              "creator_id": "cap_before_t3_hum02_78c4b0",
+              "duration_ms": 43.6,
+              "guess": "human",
+              "label": "This writing shows patterns associated with human-written text.",
+              "model_score": 0.0943,
+              "status": "decided",
+              "style_score": 0.3605,
+              "text_chars": 152,
+              "timestamp": "2026-11-19T03:06:16+00:00"
+            }
+          ],
+          "c5_pass": true
+        },
+        {
+          "criterion": "3",
+          "creator_id": "cap_before_t3_hum03_6e8078",
+          "sent": "During the nineteenth century, industrialization gave Western nations unprecedented advantages that they used to reshape the global order through imperialism.",
+          "status": 200,
+          "response": {
+            "combined_score": 0.43195,
+            "confidence": 0.1361,
+            "content_id": "6fd257d5-3884-478a-a6dd-f247e65e2f3e",
+            "guess": "unsure",
+            "label": "We cannot confidently determine whether this text was written by a human or AI.",
+            "model_score": 0.4489,
+            "style_score": 0.415
+          },
+          "c3_pass": true,
+          "log": [
+            {
+              "combined_score": 0.43195,
+              "content_id": "6fd257d5-3884-478a-a6dd-f247e65e2f3e",
+              "creator_id": "cap_before_t3_hum03_6e8078",
+              "duration_ms": 43.0,
+              "guess": "unsure",
+              "label": "We cannot confidently determine whether this text was written by a human or AI.",
+              "model_score": 0.4489,
+              "status": "decided",
+              "style_score": 0.415,
+              "text_chars": 158,
+              "timestamp": "2026-11-19T03:06:16+00:00"
+            }
+          ],
+          "c5_pass": true
+        },
+        {
+          "criterion": "3",
+          "creator_id": "cap_before_t3_hum04_a82df4",
+          "sent": "This asymmetry would define global economic relationships well into the twentieth century.",
+          "status": 200,
+          "response": {
+            "combined_score": 0.35975,
+            "confidence": 0.2805,
+            "content_id": "84542ce4-02db-4de0-8f9f-c65b47f3fae9",
+            "guess": "unsure",
+            "label": "We cannot confidently determine whether this text was written by a human or AI.",
+            "model_score": 0.2695,
+            "style_score": 0.45
+          },
+          "c3_pass": true,
+          "log": [
+            {
+              "combined_score": 0.35975,
+              "content_id": "84542ce4-02db-4de0-8f9f-c65b47f3fae9",
+              "creator_id": "cap_before_t3_hum04_a82df4",
+              "duration_ms": 30.1,
+              "guess": "unsure",
+              "label": "We cannot confidently determine whether this text was written by a human or AI.",
+              "model_score": 0.2695,
+              "status": "decided",
+              "style_score": 0.45,
+              "text_chars": 90,
+              "timestamp": "2026-11-19T03:06:16+00:00"
+            }
+          ],
+          "c5_pass": true
+        },
+        {
+          "criterion": "3",
+          "creator_id": "cap_before_t3_hum05_bb8efc",
+          "sent": "The two World Wars simultaneously devastated and deepened global interconnectedness.",
+          "status": 200,
+          "response": {
+            "combined_score": 0.27985,
+            "confidence": 0.4403,
+            "content_id": "4f245268-5ae4-4c65-a0a8-6db5111801d5",
+            "guess": "human",
+            "label": "This writing shows patterns associated with human-written text.",
+            "model_score": 0.1097,
+            "style_score": 0.45
+          },
+          "c3_pass": true,
+          "log": [
+            {
+              "combined_score": 0.27985,
+              "content_id": "4f245268-5ae4-4c65-a0a8-6db5111801d5",
+              "creator_id": "cap_before_t3_hum05_bb8efc",
+              "duration_ms": 29.7,
+              "guess": "human",
+              "label": "This writing shows patterns associated with human-written text.",
+              "model_score": 0.1097,
+              "status": "decided",
+              "style_score": 0.45,
+              "text_chars": 84,
+              "timestamp": "2026-11-19T03:06:16+00:00"
+            }
+          ],
+          "c5_pass": true
+        },
+        {
+          "criterion": "3",
+          "creator_id": "cap_before_t3_hum06_e1ea52",
+          "sent": "After 1945, institutions like the United Nations and the World Bank were founded to manage global interdependence through multilateral cooperation.",
+          "status": 200,
+          "response": {
+            "combined_score": 0.59495,
+            "confidence": 0.1899,
+            "content_id": "fc52755a-772a-4ed9-b775-36a7e549f951",
+            "guess": "unsure",
+            "label": "We cannot confidently determine whether this text was written by a human or AI.",
+            "model_score": 0.7749,
+            "style_score": 0.415
+          },
+          "c3_pass": true,
+          "log": [
+            {
+              "combined_score": 0.59495,
+              "content_id": "fc52755a-772a-4ed9-b775-36a7e549f951",
+              "creator_id": "cap_before_t3_hum06_e1ea52",
+              "duration_ms": 43.2,
+              "guess": "unsure",
+              "label": "We cannot confidently determine whether this text was written by a human or AI.",
+              "model_score": 0.7749,
+              "status": "decided",
+              "style_score": 0.415,
+              "text_chars": 147,
+              "timestamp": "2026-11-19T03:06:16+00:00"
+            }
+          ],
+          "c5_pass": true
+        },
+        {
+          "criterion": "3",
+          "creator_id": "cap_before_t3_hum07_b3ec30",
+          "sent": "The Cold War then extended integration through superpower competition.",
+          "status": 200,
+          "response": {
+            "combined_score": 0.2286,
+            "confidence": 0.5428,
+            "content_id": "649408d5-c648-43b4-ab6b-9fe7e1605c87",
+            "guess": "human",
+            "label": "This writing shows patterns associated with human-written text.",
+            "model_score": 0.0072,
+            "style_score": 0.45
+          },
+          "c3_pass": true,
+          "log": [
+            {
+              "combined_score": 0.2286,
+              "content_id": "649408d5-c648-43b4-ab6b-9fe7e1605c87",
+              "creator_id": "cap_before_t3_hum07_b3ec30",
+              "duration_ms": 27.5,
+              "guess": "human",
+              "label": "This writing shows patterns associated with human-written text.",
+              "model_score": 0.0072,
+              "status": "decided",
+              "style_score": 0.45,
+              "text_chars": 70,
+              "timestamp": "2026-11-19T03:06:16+00:00"
+            }
+          ],
+          "c5_pass": true
+        },
+        {
+          "criterion": "3",
+          "creator_id": "cap_before_t3_hum08_3cf835",
+          "sent": "Between 1950 and 2000, technology and transnational corporations became the twin engines of an accelerating globalization.",
+          "status": 200,
+          "response": {
+            "combined_score": 0.3578,
+            "confidence": 0.2844,
+            "content_id": "c5102c8c-2ec4-4f8d-aa20-d9b09d01862e",
+            "guess": "unsure",
+            "label": "We cannot confidently determine whether this text was written by a human or AI.",
+            "model_score": 0.3094,
+            "style_score": 0.4062
+          },
+          "c3_pass": true,
+          "log": [
+            {
+              "combined_score": 0.3578,
+              "content_id": "c5102c8c-2ec4-4f8d-aa20-d9b09d01862e",
+              "creator_id": "cap_before_t3_hum08_3cf835",
+              "duration_ms": 41.8,
+              "guess": "unsure",
+              "label": "We cannot confidently determine whether this text was written by a human or AI.",
+              "model_score": 0.3094,
+              "status": "decided",
+              "style_score": 0.4062,
+              "text_chars": 122,
+              "timestamp": "2026-11-19T03:06:16+00:00"
+            }
+          ],
+          "c5_pass": true
+        },
+        {
+          "criterion": "3",
+          "creator_id": "cap_before_t3_hum09_d4bb91",
+          "sent": "The digital revolution had made the world smaller without making it more equal.",
+          "status": 200,
+          "response": {
+            "combined_score": 0.43285,
+            "confidence": 0.1343,
+            "content_id": "16f38f7d-9693-4d78-a6c1-a3edf4a6a7ef",
+            "guess": "unsure",
+            "label": "We cannot confidently determine whether this text was written by a human or AI.",
+            "model_score": 0.3926,
+            "style_score": 0.4731
+          },
+          "c3_pass": true,
+          "log": [
+            {
+              "combined_score": 0.43285,
+              "content_id": "16f38f7d-9693-4d78-a6c1-a3edf4a6a7ef",
+              "creator_id": "cap_before_t3_hum09_d4bb91",
+              "duration_ms": 30.5,
+              "guess": "unsure",
+              "label": "We cannot confidently determine whether this text was written by a human or AI.",
+              "model_score": 0.3926,
+              "status": "decided",
+              "style_score": 0.4731,
+              "text_chars": 79,
+              "timestamp": "2026-11-19T03:06:16+00:00"
+            }
+          ],
+          "c5_pass": true
+        },
+        {
+          "criterion": "3",
+          "creator_id": "cap_before_t3_hum10_ccb62d",
+          "sent": "Each era intensified the world's interconnectedness, and each era reproduced the inequality that has always accompanied it.",
+          "status": 200,
+          "response": {
+            "combined_score": 0.36619999999999997,
+            "confidence": 0.2676,
+            "content_id": "5398fb06-7772-4941-bf5b-929b04fafefb",
+            "guess": "unsure",
+            "label": "We cannot confidently determine whether this text was written by a human or AI.",
+            "model_score": 0.2883,
+            "style_score": 0.4441
+          },
+          "c3_pass": true,
+          "log": [
+            {
+              "combined_score": 0.36619999999999997,
+              "content_id": "5398fb06-7772-4941-bf5b-929b04fafefb",
+              "creator_id": "cap_before_t3_hum10_ccb62d",
+              "duration_ms": 42.2,
+              "guess": "unsure",
+              "label": "We cannot confidently determine whether this text was written by a human or AI.",
+              "model_score": 0.2883,
+              "status": "decided",
+              "style_score": 0.4441,
+              "text_chars": 123,
+              "timestamp": "2026-11-19T03:06:16+00:00"
+            }
+          ],
+          "c5_pass": true
+        }
+      ]
+    }
+  ]
+}
