@@ -871,3 +871,102 @@ Every request to `/submit` writes one JSON line to `logs/audit.jsonl`, including
 | `detail` | rejection | The error message from the signal that failed |
 
 Rate-limited (429) records are written by the limiter before `/submit` runs, so they have no `duration_ms` or `text_chars`.
+Log extract (`logs/audit.jsonl`, written by `audit.log_decision` / `audit.log_rejection` from `app.py::submit`). Failures are included: six `model_unavailable` rejections from the two broken-server runs, and three scored records for the keyboard-mash input that criterion 1 caught.
+
+```json
+{"timestamp": "2026-11-19T02:15:15+00:00", "creator_id": "cap_before_t1_c4model01_106b9e", "event": "rejected", "status": "rejected", "reason": "model_unavailable", "detail": "No module named 'torch' (blocked by run_without_torch.py)", "text_chars": 84, "duration_ms": 0.0}
+{"timestamp": "2026-11-19T02:15:15+00:00", "creator_id": "cap_before_t2_c4model01_66d6d2", "event": "rejected", "status": "rejected", "reason": "model_unavailable", "detail": "No module named 'torch' (blocked by run_without_torch.py)", "text_chars": 84, "duration_ms": 0.0}
+{"timestamp": "2026-11-19T02:15:15+00:00", "creator_id": "cap_before_t3_c4model01_03bae9", "event": "rejected", "status": "rejected", "reason": "model_unavailable", "detail": "No module named 'torch' (blocked by run_without_torch.py)", "text_chars": 84, "duration_ms": 0.0}
+{"timestamp": "2026-11-19T03:04:19+00:00", "creator_id": "cap_before_t1_c4model01_eec5e8", "event": "rejected", "status": "rejected", "reason": "model_unavailable", "detail": "Couldn't load 'no-such-model-capstone': no-such-model-capstone is not a local folder and is not a valid model identifier listed on 'https://huggingface.co/models'", "text_chars": 84, "duration_ms": 5587.5}
+{"timestamp": "2026-11-19T03:04:19+00:00", "creator_id": "cap_before_t2_c4model01_1ace5d", "event": "rejected", "status": "rejected", "reason": "model_unavailable", "detail": "Couldn't load 'no-such-model-capstone': no-such-model-capstone is not a local folder and is not a valid model identifier listed on 'https://huggingface.co/models'", "text_chars": 84, "duration_ms": 162.2}
+{"timestamp": "2026-11-19T03:04:20+00:00", "creator_id": "cap_before_t3_c4model01_849830", "event": "rejected", "status": "rejected", "reason": "model_unavailable", "detail": "Couldn't load 'no-such-model-capstone': no-such-model-capstone is not a local folder and is not a valid model identifier listed on 'https://huggingface.co/models'", "text_chars": 84, "duration_ms": 52.5}
+{"combined_score": 0.228, "content_id": "44b3ae64-03d7-479f-83e8-1915265f1f65", "creator_id": "cap_before_t1_inv08_0b9dcc", "duration_ms": 5338.0, "guess": "human", "label": "This writing shows patterns associated with human-written text.", "model_score": 0.006, "status": "decided", "style_score": 0.45, "text_chars": 11, "timestamp": "2026-11-19T03:06:15+00:00"}
+{"combined_score": 0.228, "content_id": "0ed6d60c-755b-409d-8632-c3571fafaa5c", "creator_id": "cap_before_t2_inv08_ffd4ed", "duration_ms": 29.5, "guess": "human", "label": "This writing shows patterns associated with human-written text.", "model_score": 0.006, "status": "decided", "style_score": 0.45, "text_chars": 11, "timestamp": "2026-11-19T03:06:15+00:00"}
+{"combined_score": 0.228, "content_id": "ad7cb578-ecb7-4735-ba06-3135d123f70c", "creator_id": "cap_before_t3_inv08_2bfeb7", "duration_ms": 27.5, "guess": "human", "label": "This writing shows patterns associated with human-written text.", "model_score": 0.006, "status": "decided", "style_score": 0.45, "text_chars": 11, "timestamp": "2026-11-19T03:06:16+00:00"}
+PASTE_AFTER_RUN_LINES_HERE
+```
+
+**What It Costs**
+
+Provenance Guard calls no hosted API, so there is no per-request spend in dollars. The real cost is seconds of compute on my machine.
+
+How I measured it: `python capstone_eval.py --cost` sends one warm-up request, then 10 submissions of my essay paragraphs, and reads `duration_ms` from each request's own audit record (the time spent inside `/submit`). Output: `results/capstone_cost_2026-11-18_2206.md`.
+
+- Warm request: **average 105.2 ms** (min 79.3 ms, max 144.2 ms over 10 runs)
+- Cold request (first request after the server starts, while GPT-2 loads): **about 5.3 s** (5,338 ms in the before run, trial 1 of `qwe rty uio`)
+
+For 100 people a day, one submission each, on a server that stays up: 105.2 ms × 100 = 10,520 ms ≈ **10.5 seconds of compute a day**, plus one ~5.3 s cold start each time the server restarts. The cost that actually limits this system isn't time but memory: torch plus GPT-2 needs more than a free host's 512 MB, which is why it runs on Path B.
+
+**Run Log and Verdicts**
+
+All five criteria are in `criteria.md` under **Capstone**, committed before any results. Criteria 1, 2, 3 and 5 run with `python capstone_eval.py --label before` (`capstone_eval.py::run_trial`). Criterion 4 needs the server started broken, so it runs separately with `--crit4 torch` (server started by `run_without_torch.py`) and `--crit4 model` (server started with `AI201_DETECTOR_MODEL=no-such-model-capstone`). Output: `results/capstone_before_2026-11-18_2206.md`, `results/capstone_crit4_torch_before_2026-11-18_2115.json`, `results/capstone_crit4_model_before_2026-11-18_2204.json`.
+
+| Criterion | Target | Run 1 | Run 2 | Run 3 | Verdict |
+|---|---|---|---|---|---|
+| 1. Invalid text refused with 400 + JSON error | 10 of 10 | 9/10 | 9/10 | 9/10 | MISSED |
+| 2. Every refused request in the audit log | 10 of 10 | 9/10 | 9/10 | 9/10 | MISSED |
+| 3. Short human writing accepted and scored | at least 9 of 10 | 10/10 | 10/10 | 10/10 | MET |
+| 4. Missing torch / missing GPT-2 return 503 | 2 of 2 | 2/2 | 2/2 | 2/2 | MET |
+| 5. duration_ms and text_chars in every record | 20 of 20 | 20/20 | 20/20 | 20/20 | MET |
+
+**Real output, trial 1** (`capstone_eval.py::run_trial`, `results/capstone_before_2026-11-18_2206.md`):
+
+Criteria 1 and 2, the one invalid input that got through, and two that were refused:
+
+```json
+{"criterion": "1+2", "sent": "qwe rty uio", "status": 200, "response": {"combined_score": 0.228, "confidence": 0.544, "guess": "human", "label": "This writing shows patterns associated with human-written text.", "model_score": 0.006, "style_score": 0.45}}
+{"criterion": "1+2", "sent": "#$%^&*()_+", "status": 400, "response": {"error": "unscorable_text", "message": "This text has too few real words to score (needs at least 3)."}}
+{"criterion": "1+2", "sent": "zxcvbnm,./ asdf", "status": 400, "response": {"error": "unscorable_text", "message": "This text has too few real words to score (needs at least 3)."}}
+```
+
+Criterion 3, short sentences from my own essay, all scored:
+
+```json
+{"criterion": "3", "sent": "The Cold War then extended integration through superpower competition.", "status": 200, "response": {"combined_score": 0.2286, "guess": "human", "model_score": 0.0072, "style_score": 0.45}}
+{"criterion": "3", "sent": "The two World Wars simultaneously devastated and deepened global interconnectedness.", "status": 200, "response": {"combined_score": 0.27985, "guess": "human", "model_score": 0.1097, "style_score": 0.45}}
+{"criterion": "3", "sent": "The digital revolution had made the world smaller without making it more equal.", "status": 200, "response": {"combined_score": 0.43285, "guess": "unsure", "model_score": 0.3926, "style_score": 0.4731}}
+```
+
+Criterion 4: the six `model_unavailable` records under **Instrumentation** above. The `detail` field shows which failure each server had (`No module named 'torch'` vs `Couldn't load 'no-such-model-capstone'`). Criterion 5: every record in that extract carries `duration_ms` and `text_chars`.
+
+**Diagnosis: criteria 1 and 2 are one problem with two symptoms.**
+
+*Stage:* the input guard in `app.py::submit`, specifically `count_real_words`.
+
+*Mechanism:* the guard counts any run of 2+ Latin letters as a "real word". It checks the shape of a word, not whether it is one. The keyboard mash `qwe rty uio` has three 3-letter runs, so it passed `MIN_REAL_WORDS = 3` and went on to scoring in every trial, while `zxcvbnm,./ asdf` (two runs) was refused. GPT-2 finds keyboard mash extremely unpredictable (model_score 0.006), so the input came back a confident `human` (combined 0.228). Because it was scored, it wrote a `decided` record instead of a `rejected` one, which is why criterion 2 misses on the same input. There is one cause, not two.
+
+**The Improvement**
+
+*What I changed and why:* the diagnosis says the guard tests word shape, so the fix tests word content. Real English writing almost always contains at least one common function word ("the", "and", "of", "to", "is"…), and keyboard mash never does. I added `COMMON_WORDS` and `count_common_words` to `app.py`, and the guard now refuses text with fewer than 3 real words **or** no common English word. The rejection record also logs `common_words`. Committed alone, before any after-results: `capstone improvement: refuse text with no common English word`.
+
+I didn't just raise `MIN_REAL_WORDS`, because that doesn't touch the mechanism: `qwe rty uio asd` would still pass.
+
+*Re-run, three trials each, same format* (`results/capstone_after_2026-11-18_2214.md`, `results/capstone_crit4_torch_after_2026-11-18_2213.json`, `results/capstone_crit4_model_after_2026-11-18_2213.json`):
+
+| Criterion | Target | Before (Run 1 / 2 / 3) | After (Run 1 / 2 / 3) | Before | After |
+|---|---|---|---|---|---|
+| 1. Invalid text refused with 400 + JSON error | 10 of 10 | 9/10, 9/10, 9/10 | 10/10, 10/10, 10/10 | MISSED | MET |
+| 2. Every refused request in the audit log | 10 of 10 | 9/10, 9/10, 9/10 | 10/10, 10/10, 10/10 | MISSED | MET |
+| 3. Short human writing accepted and scored | at least 9 of 10 | 10/10, 10/10, 10/10 | 10/10, 10/10, 10/10 | MET | MET |
+| 4. Missing torch / missing GPT-2 return 503 | 2 of 2 | 2/2, 2/2, 2/2 | 2/2, 2/2, 2/2 | MET | MET |
+| 5. duration_ms and text_chars in every record | 20 of 20 | 20/20, 20/20, 20/20 | 20/20, 20/20, 20/20 | MET | MET |
+
+*Did it help?* Yes. Both misses are fixed and nothing regressed: criterion 3 stayed 10/10, so the stricter guard did not start refusing my real short writing. The trade-off is real but untested by my criteria. The guard now also refuses genuine text with no function word, like a headline ("Global Markets Rally Sharply") or a list of names.
+
+*A note on the criterion 4 runs:* my first `--crit4 model` before-run and my first `--crit4` after-runs hit the wrong server. A server from the previous step was still on port 5000, so the broken server failed with "Address already in use" and the test talked to the old one. The before case looked like a pass (the torch-missing server also returns 503) and the after cases failed with 200s. I found it from the `detail` field in the log, stopped every server, and re-ran. The bad files are committed alongside the good ones (`..._2115.json` model before, `..._2210.json` after), and the commit messages say which is which.
+
+**What's Still Broken**
+
+I met all five, so the honest question is which target was set too low.
+
+- **Criterion 1 is the one I'd tighten first.** My 10 invalid inputs are all junk that has no common word at all, so the new guard catches every one. The obvious bypass is gibberish with one function word attached, like `the qwe rty uio`. I'd tighten it to 15 invalid inputs, including five that mix one or two real function words into gibberish, still at 15 of 15. I expect the current guard to miss those, and the fix would be a ratio (for example, at least 30% of tokens are dictionary words) instead of "at least one".
+- **Criterion 3 never tests the trade-off I just made.** All 10 of my short samples are full sentences from one essay. I'd add 5 headline-style or list-style human samples and keep the target at 9 of 10 accepted. I expect a miss, which would tell me the common-word rule is too blunt.
+- I also stopped short of a language check: non-Latin scripts get the same generic refusal rather than an "English only" message, as declared out of scope.
+
+*What I'd do first with another unit:* replace the "at least one common word" rule with a dictionary-ratio check, tested against both the tightened criterion 1 and the headline samples in criterion 3. Both of my remaining weak points are the same guard being either too loose or too blunt, so one change aimed there serves both.
+
+**How I Used AI**
+
+*Moment 1: finding why criterion 1 missed.* I pasted my before run into Claude and asked why criteria 1 and 2 were both 9/10. It pointed out from the server log that the same input (the 8th) got a 200 in every trial, and that this one input explains both misses. It guessed keyboard text with three short letter runs, and gave me a `grep` to confirm. The input was `qwe rty uio`. It then suggested the common-function-word check. I checked it against my criterion 3 sentences before committing, and I committed the fix on its own, before any after-results, so the order is visible.
+
+*Moment 2: catching a test that only looked like it passed.* My first criterion 4 "model" run printed PASS three times. When I pasted the terminal, Claude noticed the broken server had failed to start with "Address already in use", so the test had hit the torch-missing server still running on port 5000, and both return the same 503. I confirmed it from the log's `detail` field, re-ran with the right server, and wrote the reason into the commit message. The same thing happened again on the after run (this time the healthy server was still up, so it failed with 200s). I fixed it the same way, and kept both bad result files in the repo instead of deleting them.
