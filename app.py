@@ -48,6 +48,21 @@ def count_real_words(text):
     return len(re.findall(r"\b[a-zA-Z]{2,}\b", text))
 
 
+# Capstone improvement: real writing contains at least one common English word.
+# count_real_words only checks the SHAPE of a word, so keyboard mash like
+# "qwe rty uio" passed as three words. Function words separate the two.
+COMMON_WORDS = {
+    "the", "a", "an", "and", "or", "but", "of", "to", "in", "on", "at", "for",
+    "with", "by", "from", "as", "is", "are", "was", "were", "be", "it", "this",
+    "that", "i", "you", "we", "they", "he", "she", "my", "our", "not", "have",
+    "has", "had",
+}
+
+
+def count_common_words(text):
+    return sum(1 for w in re.findall(r"[a-zA-Z]+", text.lower()) if w in COMMON_WORDS)
+
+
 def ms_since(start):
     return round((time.perf_counter() - start) * 1000, 1)
 
@@ -243,13 +258,16 @@ def submit():
 
     # Capstone: refuse text the signals can't score honestly (MF02–MF06)
     real_words = count_real_words(text)
-    if real_words < MIN_REAL_WORDS:
+    common_words = count_common_words(text)
+    if real_words < MIN_REAL_WORDS or common_words == 0:
         audit.log_rejection(creator_id=creator_id, reason="unscorable_text",
                             text_chars=text_chars, real_words=real_words,
+                            common_words=common_words,
                             duration_ms=ms_since(start))
         return jsonify({
             "error": "unscorable_text",
-            "message": f"This text has too few real words to score (needs at least {MIN_REAL_WORDS}).",
+            "message": (f"This text doesn't look like real writing (needs at least "
+                        f"{MIN_REAL_WORDS} real words, including a common English word)."),
         }), 400
 
     content_id = str(uuid.uuid4())
