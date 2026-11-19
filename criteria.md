@@ -61,3 +61,38 @@ Users may accidentally submit incomplete or invalid information. The service sho
 These five criteria focus on reducing false accusations, measuring score differences, providing meaningful labels, handling appeals, and validating user input.
 
 The goal is not to create a perfect AI detector, but to build a system that is measurable, transparent, and fair to writers. Any targets the system fails to meet during future testing should be documented and investigated rather than silently changed.
+---
+
+## Capstone
+
+Written before any capstone results, for the Shape B extension (failure handling on the scoring stage of `/submit`).
+
+### 1. Refusing Invalid Text
+
+**Target:** When 10 invalid text submissions are tested, including single characters, punctuation-only text, emojis, and random keyboard characters, the system must reject all 10 out of 10 requests with HTTP 400 and a clear JSON error message instead of generating an AI or human classification.
+
+**Why:** Text without meaningful content cannot be evaluated reliably. I chose 10 out of 10 because even one incorrect classification could mislead users or unfairly label their writing.
+
+### 2. Recording Failed Requests in the Audit Log
+
+**Target:** For 10 intentionally refused or failed requests, all 10 must produce an entry in `logs/audit.jsonl`. Each entry must contain the original `creator_id` and a status indicating that the request was refused or failed.
+
+**Why:** Every failed request should be traceable so I can identify problems and investigate errors. I chose 100% because missing even one failure could make debugging difficult and leave an incomplete record of what happened.
+
+### 3. Accepting Valid Short Human Writing
+
+**Target:** Out of 10 meaningful human-written samples containing 8–20 words each, at least 9 out of 10 must be accepted and scored rather than refused. An accepted response must include a confidence score and a label.
+
+**Why:** Short writing is not necessarily invalid. I chose 9 out of 10 because refusing too many legitimate submissions would make the system unreliable for real writers. Allowing one rejection accounts for borderline cases while still maintaining a high acceptance rate.
+
+### 4. Handling Missing Model Dependencies
+
+**Target:** In 2 out of 2 simulated failure scenarios, one with PyTorch unavailable and one with GPT-2 unavailable, the system must return HTTP 503 with a JSON error explaining that scoring is unavailable, without producing a false classification or an unhandled server error.
+
+**Why:** The system depends on external model components that might not always be available. I chose 2 out of 2 because both known dependency failures should be handled safely rather than causing the service to crash or return unreliable results.
+
+### 5. Recording Performance and Text Information
+
+**Target:** Across 20 submissions, including 10 accepted and 10 refused requests, all 20 corresponding audit records must include `duration_ms` as a nonnegative number and `text_chars` as an integer matching the submitted text's character count.
+
+**Why:** These fields help me understand how long requests take and what types of submissions cause problems. I chose 20 out of 20 because complete records are necessary for comparing successful and failed requests accurately.
