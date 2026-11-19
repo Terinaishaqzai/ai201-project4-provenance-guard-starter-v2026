@@ -832,3 +832,20 @@ GitHub repository:
 https://github.com/Terinaishaqzai/ai201-project4-provenance-guard-starter-v2026
 
 This same repository was used for Units 7 and 8, so the commit history shows the acceptance criteria existed before the test results.
+
+---
+
+## Capstone
+
+**What This Extends**
+
+This extends Provenance Guard (Project 4), my Flask service that scores text as AI- or human-written using a GPT-2 perplexity signal and a stylometry signal. What's new is a failure-handling layer around the scoring stage of `/submit`. The detection logic itself doesn't change.
+
+**The Shape**
+
+Shape B: harden against failure. Unit 8 left the scoring stage with no bad path. A one-character submission crashes `/submit` with a 500 and leaves no audit entry (MF02), and text with no real words (control characters, punctuation, emoji) gets a confident label (MF03–MF06). I'm adding one guard around the scoring stage in `/submit`. It refuses text with too few real words, and it catches `ValueError` and `DetectorUnavailable` from the signals. Each of these returns a JSON error (400 for unscorable text, 503 for a missing model) and writes a rejection to the audit log. I'm also adding `duration_ms` and input length to every log record, so failures can be timed and found.
+
+Out of scope:
+- I'm not changing either signal, the weights or the thresholds. FP05 and the evasion attacks stay broken.
+- I'm not adding a language check. MF07 (right-to-left script) stays as it is.
+- I'm not changing the rate limiter or its per-`creator_id` key.
