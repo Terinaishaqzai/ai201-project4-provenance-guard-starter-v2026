@@ -306,3 +306,76 @@ is evidence, and the entries you paste into your README are what unit 8 grades.
 
 **Do not delete and recreate this repository.** You submit the same URL both
 units.
+
+---
+
+## Capstone — Path B: local, with logs
+
+Provenance Guard runs on my own machine (Path B). It can't run on the free host: `torch` plus the GPT-2 weights need more than the 512 MB a free tier gives, before a single request arrives (see "This project will not fit a free host" above).
+
+### The start command
+
+From the repository folder, with the virtual environment active:
+
+```bash
+python app.py
+```
+
+The service then answers at `http://127.0.0.1:5000`.
+
+### From a clean checkout
+
+```bash
+git clone https://github.com/Terinaishaqzai/ai201-project4-provenance-guard-starter-v2026.git
+cd ai201-project4-provenance-guard-starter-v2026
+python3.13 -m venv .venv
+source .venv/bin/activate          # Windows: .venv\Scripts\Activate.ps1
+pip install -r requirements-lock.txt
+python test.py                     # every check should PASS
+python detector.py                 # one-time: downloads GPT-2 (~550 MB)
+python app.py
+```
+
+Check that it's up, from a second terminal:
+
+```bash
+curl http://127.0.0.1:5000/health
+```
+
+`"detector_loaded"` is `false` until the first `/submit`. That first submission takes 10–20 seconds while the model loads. Later ones take a second or two.
+
+### What the environment needs
+
+| Need | Value |
+|---|---|
+| Python | 3.13 (`test.py` allows 3.11–3.13 and fails 3.14) |
+| Dependencies | `requirements-lock.txt`: exact versions from `pip freeze` in my working environment. `requirements.txt` holds the ranges they were chosen from |
+| Model | `gpt2` from Hugging Face, ~550 MB, downloaded once by `python detector.py` into the Hugging Face cache (`~/.cache/huggingface/`). It is not committed to the repo |
+| Disk | About 1.5 GB free for `torch`, `transformers` and the model |
+| Network | Only for the install and the one-time model download. Scoring runs offline |
+| API keys | None |
+
+### The run record
+
+Every request to `/submit` writes one JSON line to `logs/audit.jsonl`, including requests that are refused or fail. Each line has a `timestamp`, the `creator_id`, `text_chars` (input length), the outcome (`guess`, both signal scores and `label` for a decision, or `reason` for a rejection) and `duration_ms`. The log is committed, and the capstone run is pasted as text in the README under **Instrumentation**.
+
+### Running the capstone tests
+
+With the service running (`python app.py`) in one terminal:
+
+```bash
+python capstone_eval.py --label before     # criteria 1, 2, 3 and 5, three trials
+python capstone_eval.py --cost             # cost: 10 warm submissions, average duration_ms
+```
+
+Criterion 4 needs the server started broken. Stop the normal server first, then:
+
+```bash
+python run_without_torch.py                                # terminal 1: torch missing
+python capstone_eval.py --crit4 torch --label before       # terminal 2
+
+AI201_DETECTOR_MODEL=no-such-model-capstone python app.py  # terminal 1: GPT-2 missing
+python capstone_eval.py --crit4 model --label before       # terminal 2
+```
+
+Run criterion 4 before the main run. The main run picks up the latest criterion 4 results for the same label and puts all five rows in one table. Everything is written to `results/capstone_<label>_<date>.md`.
